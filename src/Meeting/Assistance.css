@@ -1,0 +1,28 @@
+
+.content {
+  text-align: center;
+  color: black;
+}
+
+img{
+    width:50%;
+  }
+
+.buttons{
+  margin-top: 43px;
+  display: flex;
+  width: auto;
+}
+
+
+.accept {
+  width: 50%;
+  color:green;
+  cursor: pointer;
+}
+
+.decline{
+  width: 50%;
+  color: red;
+  cursor: pointer;
+}
