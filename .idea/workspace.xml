@@ -56,12 +56,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Enterprise/NewMeeting.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="345">
+              <caret line="104" column="63" selection-start-line="104" selection-start-column="63" selection-end-line="104" selection-end-column="63" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,6 +100,7 @@
         <option value="$PROJECT_DIR$/src/userProfile/UserProfile.css" />
         <option value="$PROJECT_DIR$/src/Drawer/NavigationDrawer.js" />
         <option value="$PROJECT_DIR$/src/userProfile/UserProfile.js" />
+        <option value="$PROJECT_DIR$/src/Enterprise/NewMeeting.js" />
       </list>
     </option>
   </component>

@@ -6,6 +6,7 @@ import {Access} from './Meeting/Access';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
 import EnterpriseSignUp from "./Enterprise/SignUp";
+import NewMeeting from "./Enterprise/NewMeeting";
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
                       <Route path="/Access" component={Access} />
                       <Route path="/UserProfile" component={UserProfile}/>
                       <Route path="/enterprise/register" component={EnterpriseSignUp}/>
+                      <Route path="/enterprise/newMeeting" component={NewMeeting}/>
                     </div>
                   </Router>
                 </header>
