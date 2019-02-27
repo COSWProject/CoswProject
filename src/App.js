@@ -5,7 +5,7 @@ import {Assistance} from './Meeting/Assistance';
 import {Access} from './Meeting/Access';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
-
+import EnterpriseSignUp from "./Enterprise/SignUp";
 
 class App extends Component {
 
@@ -25,6 +25,7 @@ class App extends Component {
                       <Route path="/Assistance" component={Assistance}/>
                       <Route path="/Access" component={Access} />
                       <Route path="/UserProfile" component={UserProfile}/>
+                      <Route path="/enterprise/register" component={EnterpriseSignUp}/>
                     </div>
                   </Router>
                 </header>
