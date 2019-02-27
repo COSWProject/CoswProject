@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Login} from './Login/Login';
+import signup from './UserSignUp/SignUp';
+import {Assistance} from './Meeting/Assistance';
+import {Access} from './Meeting/Access';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import UserProfile from "./userProfile/UserProfile";
+import EnterpriseSignUp from "./Enterprise/SignUp";
+import NewMeeting from "./Enterprise/NewMeeting";
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    constructor(props) {
+        super(props);
+        localStorage.setItem('email','escuela@escuelaing.edu.co');
+        localStorage.setItem('password','cosw2019');
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                  <Router>
+                    <div>
+                      <Route exact path="/" component={Login} />
+                      <Route path="/Assistance" component={Assistance}/>
+                      <Route path="/Access" component={Access} />
+                      <Route path="/UserProfile" component={UserProfile}/>
+                      <Route path="/enterprise/register" component={EnterpriseSignUp}/>
+                      <Route path="/enterprise/newMeeting" component={NewMeeting}/>
+                      <Route path="/Signup/user" component={signup}/>
+                    </div>
+                  </Router>
+                </header>
+            </div>
+        );
+    }
 }
 
 export default App;
