@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 import './App.css';
 import EnterpriseSignUp from "./SignUp/EnterpriseSignUp";
 
@@ -12,11 +12,9 @@ class App extends Component {
 
         return (
             <div className="App">
-                <header className="App-header">
-                    <Router>
-                        <Route path="/enterpriseregister" component={enterpriseView}/>
-                    </Router>
-                </header>
+                <Router>
+                    <Route path="/enterprise/register" component={enterpriseView}/>
+                </Router>
             </div>
         );
     }

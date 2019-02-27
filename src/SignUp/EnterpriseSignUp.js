@@ -1,6 +1,39 @@
 import React, {Component} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import GpsFixed from '@material-ui/icons/GpsFixed';
+import Email from '@material-ui/icons/Email';
+import Phone from '@material-ui/icons/Phone';
+import VpnKey from '@material-ui/icons/VpnKey';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import AssignmentInd from '@material-ui/icons/AssignmentInd';
+import withStyles from "@material-ui/core/styles/withStyles";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import AppBar from "@material-ui/core/AppBar";
+
+const styles = theme => ({
+    form: {
+        marginTop: "7%"
+    }, text: {
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: 350,
+    }, main: {
+        textAlign: 'center'
+    }, icon: {
+        marginRight: "1%"
+    }, button: {
+        width: 300
+    }, menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    }
+});
 
 class EnterpriseSignUp extends Component {
 
@@ -48,46 +81,100 @@ class EnterpriseSignUp extends Component {
         this.setState({password: e.target.value});
     }
 
+    handleSubmit(e) {
+
+        e.preventDefault();
+
+        console.log("Logged")
+    }
+
     render() {
 
+
+        const {classes} = this.props;
         const inputs = [
             {
                 label: "Name",
                 type: "text",
-                onchange: this.handleChangeName
+                onchange: this.handleChangeName,
+                icon: <AccountCircle className={classes.icon}/>
             }, {
                 label: "Ubication",
                 type: "text",
-                onchange: this.handleChangeUbication
+                onchange: this.handleChangeUbication,
+                icon: <GpsFixed className={classes.icon}/>
             }, {
                 label: "Email",
                 type: "text",
-                onchange: this.handleChangeEmail
+                onchange: this.handleChangeEmail,
+                icon: <Email className={classes.icon}/>
             }, {
                 label: "Phone",
                 type: "number",
-                onchange: this.handleChangePhone
+                onchange: this.handleChangePhone,
+                icon: <Phone className={classes.icon}/>
             }, {
                 label: "Nit",
                 type: "number",
-                onchange: this.handleChangeNit
+                onchange: this.handleChangeNit,
+                icon: <AssignmentInd className={classes.icon}/>
             }, {
                 label: "Password",
                 type: "password",
-                onchange: this.handleChangePassword
+                onchange: this.handleChangePassword,
+                icon: <VpnKey className={classes.icon}/>
             }
         ];
 
-
         const inputTexts = inputs.map((x) => {
-
-        })
+            return (
+                <>
+                    <CssBaseline/>
+                    <TextField
+                        required
+                        className={classes.text}
+                        label={x.label}
+                        margin="normal"
+                        onChange={x.onchange}
+                        type={x.type}
+                        InputProps={{
+                            startAdornment: (
+                                x.icon
+                            )
+                        }}
+                    />
+                    <br/>
+                </>
+            );
+        });
 
         return (
-            <>
-            </>
+            <div className={classes.main}>
+                <CssBaseline/>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                            <KeyboardArrowLeft/>
+                        </IconButton>
+                        <Typography variant="h6" color="inherit" className={classes.grow}>
+                            Enterprise
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <form className={classes.form} onSubmit={this.handleSubmit}>
+                    {inputTexts}
+                    <Button
+                        type="submit"
+                        variant="outlined"
+                        color="primary"
+                        className={classes.button}
+                    >
+                        Sign Up
+                    </Button>
+                </form>
+            </div>
         );
     }
 }
 
-export default EnterpriseSignUp;
+export default withStyles(styles)(EnterpriseSignUp);
