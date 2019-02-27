@@ -14,7 +14,6 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <Route path="/enterprise/register" component={enterpriseView}/>
-                    <Route path="/enterprise/newmeeting"/>
                 </Router>
             </div>
         );
