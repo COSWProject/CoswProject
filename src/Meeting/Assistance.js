@@ -1,23 +1,31 @@
 import React from "react";
-import TextField from '@material-ui/core/TextField';
-import Paper from "@material-ui/core/es/Paper/Paper";
 import './Assistance.css';
-import logo from './../img/Logo.png';
-import user from './../img/user.svg';
-import password from './../img/password.svg';
-import {*} from "@material-ui/core";
+import escuela from './../img/escuela.png';
 import Link from "@material-ui/core/Link";
 
 
 export class Assistance extends React.Component {
 
+  changePage(){
+    alert("CONCHA");
+  }
+
   render(){
-    return(
-
-      <div>
-        <h1>TODO ESTA BIEN</h1>
+    return (
+      <div className="content">
+        <div>
+          <p>Confirm Assistance</p>
+          <p>Wednesday 26 February 2019</p>
+          <img src={escuela}/>
+          <p>Hour: 8:30</p>
+          <p>Address: AK 45 (Autonorte) #205-59</p>
+          <p>Invited: Oswaldo Castillo</p>
+        </div>
+        <div className="buttons">
+          <div className="accept" onClick= {this.changePage}> ACCEPT</div>
+          <div className="decline"> DECLINE</div>
+        </div>
       </div>
-
 
     );
   }
