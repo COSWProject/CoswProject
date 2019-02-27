@@ -22,21 +22,19 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <header className="App-header">
-                    <Router>
-                        <div>
-                            <Route exact path="/" component={Login}/>
-                            <Route path="/Assistance" component={Assistance}/>
-                            <Route path="/Access" component={Access}/>
-                            <Route path="/UserProfile" component={UserProfile}/>
-                            <Route path="/enterprise/register" component={EnterpriseSignUp}/>
-                            <Route path="/enterprise/newMeeting" component={NewMeeting}/>
-                            <Route path="/Signup/user" component={signup}/>
-                            <Route exact path="/Schedule" component={schedule}/>
-                            <Route path="/company/login" component={CompanyLogin}/>
-                        </div>
-                    </Router>
-                </header>
+                <Router>
+                    <div>
+                        <Route exact path="/" component={Login}/>
+                        <Route path="/Assistance" component={Assistance}/>
+                        <Route path="/Access" component={Access}/>
+                        <Route path="/UserProfile" component={UserProfile}/>
+                        <Route path="/enterprise/register" component={EnterpriseSignUp}/>
+                        <Route path="/enterprise/newMeeting" component={NewMeeting}/>
+                        <Route path="/Signup/user" component={signup}/>
+                        <Route exact path="/Schedule" component={schedule}/>
+                        <Route path="/company/login" component={CompanyLogin}/>
+                    </div>
+                </Router>
             </div>
         );
     }

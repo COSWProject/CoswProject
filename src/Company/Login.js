@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import AppBar from "./NewMeeting";
+import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import KeyboardArrowLeft from "@material-ui/core/es/internal/svg-icons/KeyboardArrowLeft";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = theme => ({});
 
@@ -55,3 +56,5 @@ class Login extends Component {
         );
     }
 }
+
+export default withStyles(styles)(Login);
