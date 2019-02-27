@@ -1,6 +1,12 @@
-.content {
+.content_access{
   text-align: center;
   color: black;
+  margin-top: -100px;
+}
+
+.pass{
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 img{
