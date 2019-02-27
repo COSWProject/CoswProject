@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 import './App.css';
-import EnterpriseSignUp from "./SignUp/EnterpriseSignUp";
+import EnterpriseSignUp from "./Enterprise/SignUp";
 
 class App extends Component {
     render() {
@@ -14,6 +14,7 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <Route path="/enterprise/register" component={enterpriseView}/>
+                    <Route path="/enterprise/newmeeting"/>
                 </Router>
             </div>
         );
