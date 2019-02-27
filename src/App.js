@@ -1,20 +1,36 @@
-import React, {Component} from 'react';
-import {Route, BrowserRouter as Router} from 'react-router-dom';
+import React, { Component } from 'react';
 import './App.css';
+import {Login} from './Login/Login';
+import {Assistance} from './Meeting/Assistance';
+import {Access} from './Meeting/Access';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import UserProfile from "./userProfile/UserProfile";
+import EnterpriseSignUp from "./Enterprise/SignUp";
 import NewMeeting from "./Enterprise/NewMeeting";
 
 class App extends Component {
+
+    constructor(props) {
+        super(props);
+        localStorage.setItem('email','escuela@escuelaing.edu.co');
+        localStorage.setItem('password','cosw2019');
+    }
+
     render() {
-
-        const newMeetingView = () => (
-            <NewMeeting/>
-        );
-
         return (
             <div className="App">
-                <Router>
-                    <Route path="/enterprise/newMeeting" component={newMeetingView}/>
-                </Router>
+                <header className="App-header">
+                  <Router>
+                    <div>
+                      <Route exact path="/" component={Login} />
+                      <Route path="/Assistance" component={Assistance}/>
+                      <Route path="/Access" component={Access} />
+                      <Route path="/UserProfile" component={UserProfile}/>
+                      <Route path="/enterprise/register" component={EnterpriseSignUp}/>
+                      <Route path="/enterprise/newMeeting" component={NewMeeting}/>
+                    </div>
+                  </Router>
+                </header>
             </div>
         );
     }
