@@ -93,7 +93,7 @@ const styles = theme => ({
     },
 });
 
-class Dashboard extends React.Component {
+ class Dashboard extends React.Component {
     state = {
         open: true,
     };
@@ -177,5 +177,6 @@ class Dashboard extends React.Component {
 Dashboard.propTypes = {
     classes: PropTypes.object.isRequired,
 };
+
 
 export default withStyles(styles)(Dashboard);
