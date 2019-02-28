@@ -1,14 +1,9 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Tune from '@material-ui/icons/Tune';
 import withStyles from "@material-ui/core/styles/withStyles";
-import MenuItem from "@material-ui/core/MenuItem";
 
 const styles = theme => ({
     buttonFilter: {
@@ -16,7 +11,7 @@ const styles = theme => ({
     }, leftIcon: {
         marginRight: theme.spacing.unit,
     }, dialog: {
-        textAlign: "center"
+        textAlign: "center",
     }, text: {
         width: "70%"
     }, button: {
@@ -44,14 +39,15 @@ class FormDialog extends React.Component {
         return (
             <div>
                 <Button
-                    color="inherit"
+                    color="primary"
+                    variant="contained"
                     className={classes.buttonFilter}
                     onClick={this.handleClickOpen}
                 >
-                    <Tune className={classes.leftIcon}/>
-                    Filter
+                    {this.props.buttonName}
                 </Button>
                 <Dialog
+                    fullWidth="true"
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"

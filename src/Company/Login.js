@@ -9,7 +9,9 @@ import SimpleModal from "./SimpleModal";
 
 const styles = theme => ({
     text: {
-        width: 500
+        marginLeft: theme.spacing.unit,
+        marginRight: theme.spacing.unit,
+        width: "100%"
     }, avatar: {
         backgroundColor: "black",
         margin: theme.spacing.unit,
@@ -115,7 +117,7 @@ class Login extends Component {
 
         return (
             <>
-                <SimpleModal elements={form}/>
+                <SimpleModal elements={form} buttonName="Login"/>
             </>
         );
     }

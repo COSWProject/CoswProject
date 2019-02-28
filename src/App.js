@@ -7,7 +7,6 @@ import {Assistance} from './Meeting/Assistance';
 import {Access} from './Meeting/Access';
 import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
-import EnterpriseSignUp from "./Company/SignUp";
 import NewMeeting from "./Company/NewMeeting";
 import CompanyMain from "./Company/Main";
 
