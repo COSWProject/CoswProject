@@ -9,7 +9,7 @@ import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
 import EnterpriseSignUp from "./Company/SignUp";
 import NewMeeting from "./Company/NewMeeting";
-import CompanyLogin from "./Company/Login";
+import CompanyMain from "./Company/Main";
 
 class App extends Component {
 
@@ -28,11 +28,10 @@ class App extends Component {
                         <Route path="/Assistance" component={Assistance}/>
                         <Route path="/Access" component={Access}/>
                         <Route path="/UserProfile" component={UserProfile}/>
-                        <Route path="/enterprise/register" component={EnterpriseSignUp}/>
                         <Route path="/enterprise/newMeeting" component={NewMeeting}/>
                         <Route path="/Signup/user" component={signup}/>
                         <Route exact path="/Schedule" component={schedule}/>
-                        <Route path="/company/login" component={CompanyLogin}/>
+                        <Route path="/company" component={CompanyMain}/>
                     </div>
                 </Router>
             </div>

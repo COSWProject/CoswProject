@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -15,6 +14,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import AppBar from "@material-ui/core/AppBar";
+import SimpleModal from "./SimpleModal";
 
 const styles = theme => ({
     form: {
@@ -92,6 +92,7 @@ class SignUp extends Component {
 
 
         const {classes} = this.props;
+
         const inputs = [
             {
                 label: "Name",
@@ -148,31 +149,24 @@ class SignUp extends Component {
             );
         });
 
+        const form = (
+            <form className={classes.form} onSubmit={this.handleSubmit}>
+                {inputTexts}
+                <Button
+                    type="submit"
+                    variant="outlined"
+                    color="primary"
+                    className={classes.button}
+                >
+                    Sign Up
+                </Button>
+            </form>
+        );
+
         return (
-            <div className={classes.main}>
-                <CssBaseline/>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <KeyboardArrowLeft/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Enterprise
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <form className={classes.form} onSubmit={this.handleSubmit}>
-                    {inputTexts}
-                    <Button
-                        type="submit"
-                        variant="outlined"
-                        color="primary"
-                        className={classes.button}
-                    >
-                        Sign Up
-                    </Button>
-                </form>
-            </div>
+            <>
+                <SimpleModal elements={form}/>
+            </>
         );
     }
 }
