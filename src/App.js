@@ -9,6 +9,7 @@ import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
 import NewMeeting from "./Company/NewMeeting";
 import CompanyMain from "./Company/Main";
+import CompanyProfile from "./Company/Profile";
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
                         <Route path="/Signup/user" component={signup}/>
                         <Route exact path="/Schedule" component={schedule}/>
                         <Route path="/company/main" component={CompanyMain}/>
+                        <Route path="/company/profile" component={CompanyProfile}/>
                     </div>
                 </Router>
             </div>
