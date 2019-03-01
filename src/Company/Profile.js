@@ -8,8 +8,10 @@ import classNames from "classnames";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
 import MenuIcon from '@material-ui/icons/Menu';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from "@material-ui/core/Divider";
+import {List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 
 const drawerWidth = 240;
 
@@ -83,11 +85,38 @@ class Profile extends Component {
         this.setState({open: false});
     };
 
+    handleLogout() {
+        window.location.href = "/company/main"
+    }
+
     render() {
 
         const {classes} = this.props;
 
         const {open} = this.state;
+
+        const items = [
+            {
+                label: "Logout",
+                icon: <ExitToApp/>,
+                onClick: this.handleLogout
+            }
+        ];
+
+        const drawerItems = items.map((x, i) => {
+            return (
+                <ListItem
+                    button
+                    onClick={x.onClick}
+                    key={i}
+                >
+                    <ListItemIcon>
+                        {x.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={x.label}/>
+                </ListItem>
+            );
+        });
 
         return (
             <>
@@ -109,7 +138,7 @@ class Profile extends Component {
                                 <MenuIcon/>
                             </IconButton>
                             <Typography variant="h6" color="inherit" noWrap>
-                                Persistent drawer
+                                Profile
                             </Typography>
                         </Toolbar>
                     </AppBar>
@@ -128,6 +157,9 @@ class Profile extends Component {
                             </IconButton>
                         </div>
                         <Divider/>
+                        <List>
+                            {drawerItems}
+                        </List>
                     </Drawer>
                     <main
                         className={classNames(classes.content, {

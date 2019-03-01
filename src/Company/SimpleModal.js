@@ -47,7 +47,7 @@ class FormDialog extends React.Component {
                     {this.props.buttonName}
                 </Button>
                 <Dialog
-                    fullWidth="true"
+                    fullWidth={true}
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"

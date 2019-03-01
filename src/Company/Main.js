@@ -43,7 +43,7 @@ class Main extends Component {
                             <ArrowBackIos/>
                         </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
-                            News
+                            Easy Access
                         </Typography>
                     </Toolbar>
                 </AppBar>

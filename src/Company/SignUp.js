@@ -123,9 +123,9 @@ class SignUp extends Component {
             }
         ];
 
-        const inputTexts = inputs.map((x) => {
+        const inputTexts = inputs.map((x, i) => {
             return (
-                <>
+                <div key={i}>
                     <CssBaseline/>
                     <TextField
                         required
@@ -141,7 +141,7 @@ class SignUp extends Component {
                         }}
                     />
                     <br/>
-                </>
+                </div>
             );
         });
 

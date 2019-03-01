@@ -73,9 +73,9 @@ class Login extends Component {
             }
         ]
 
-        const inputTexts = inputs.map((x) => {
+        const inputTexts = inputs.map((x, i) => {
             return (
-                <>
+                <div key={i}>
                     <TextField
                         required
                         className={classes.text}
@@ -90,7 +90,7 @@ class Login extends Component {
                         }}
                     />
                     <br/>
-                </>
+                </div>
             );
         });
 
