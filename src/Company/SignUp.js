@@ -1,20 +1,16 @@
 import React, {Component} from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import GpsFixed from '@material-ui/icons/GpsFixed';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
 import VpnKey from '@material-ui/icons/VpnKey';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import AssignmentInd from '@material-ui/icons/AssignmentInd';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import AppBar from "@material-ui/core/AppBar";
+import SimpleModal from "./SimpleModal";
+import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
     form: {
@@ -22,13 +18,13 @@ const styles = theme => ({
     }, text: {
         marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
-        width: 350,
+        width: "100%"
     }, main: {
         textAlign: 'center'
     }, icon: {
         marginRight: "1%"
     }, button: {
-        width: 300
+        width: "70%"
     }, menuButton: {
         marginLeft: -12,
         marginRight: 20,
@@ -92,6 +88,7 @@ class SignUp extends Component {
 
 
         const {classes} = this.props;
+
         const inputs = [
             {
                 label: "Name",
@@ -148,31 +145,30 @@ class SignUp extends Component {
             );
         });
 
+        const form = (
+            <form className={classes.form} onSubmit={this.handleSubmit}>
+                <Typography component="h1" variant="h4">
+                    Company sign up
+                </Typography>
+                <br/>
+                {inputTexts}
+                <Button
+                    type="submit"
+                    variant="outlined"
+                    color="primary"
+                    className={classes.button}
+                >
+                    Sign Up
+                </Button>
+            </form>
+        );
+
         return (
-            <div className={classes.main}>
-                <CssBaseline/>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <KeyboardArrowLeft/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Enterprise
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <form className={classes.form} onSubmit={this.handleSubmit}>
-                    {inputTexts}
-                    <Button
-                        type="submit"
-                        variant="outlined"
-                        color="primary"
-                        className={classes.button}
-                    >
-                        Sign Up
-                    </Button>
-                </form>
-            </div>
+            <>
+                <SimpleModal
+                    elements={form}
+                    buttonName="Sign Up"/>
+            </>
         );
     }
 }
