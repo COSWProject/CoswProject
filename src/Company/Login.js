@@ -51,7 +51,7 @@ class Login extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log("Redirect to company profile");
+        window.location.href = "/company/profile"
     }
 
     render() {
