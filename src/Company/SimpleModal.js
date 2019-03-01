@@ -7,7 +7,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = theme => ({
     buttonFilter: {
-        marginRight: 20
+        width: "10%"
     }, leftIcon: {
         marginRight: theme.spacing.unit,
     }, dialog: {

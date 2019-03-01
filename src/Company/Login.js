@@ -19,7 +19,7 @@ const styles = theme => ({
     }, card: {
         marginTop: "7%"
     }, button: {
-        width: 200,
+        width: "70%",
         position: "left"
     }, divButton: {
         textAlign: "right"
@@ -102,16 +102,14 @@ class Login extends Component {
                 <br/>
                 {inputTexts}
                 <br/>
-                <div className={classes.divButton}>
-                    <Button
-                        type="submit"
-                        variant="outlined"
-                        color="primary"
-                        className={classes.button}
-                    >
-                        Sign In
-                    </Button>
-                </div>
+                <Button
+                    type="submit"
+                    variant="outlined"
+                    color="primary"
+                    className={classes.button}
+                >
+                    Sign In
+                </Button>
             </form>
         );
 
