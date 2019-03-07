@@ -1,7 +1,6 @@
 .content_access{
   text-align: center;
   color: black;
-  margin-top: -50px;
 }
 
 .pass{
@@ -9,6 +8,25 @@
   margin-right: 20px;
 }
 
+.menuButton{
+    marginLeft: -12;
+    marginRight: 20;
+},
+.grow {
+    flexGrow: 1;
+    textAlign: "left"
+}
+
 img{
-    width:50%;
+    width:30%;
   }
+
+@media (max-width: 750px) {
+    img {
+      width: 50%;
+    }
+  }
+
+p[class="company"]{
+  font-size: 25px;
+}

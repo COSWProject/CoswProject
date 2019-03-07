@@ -5,7 +5,13 @@
 }
 
 img{
-    width:50%;
+    width:30%;
+  }
+
+@media (max-width: 750px) {
+    img {
+      width: 30%;
+    }
   }
 
 .buttons{
