@@ -10,6 +10,7 @@ import SimpleModal from "../Component/SimpleModal";
 import AppBarComponent from "../Component/AppBar";
 import CompanySignIn from "../Company/Login";
 import CompanySignUp from "../Company/SignUp";
+import UserSignUp from "../UserSignUp/SignUp";
 
 const styles = theme => ({
     text: {
@@ -159,8 +160,10 @@ class Login extends Component {
                             buttonName="User Sign in"
                             buttonSize="large"
                         />
+                        <UserSignUp/>
                         <CompanySignIn/>
                         <CompanySignUp/>
+
                     </div>
                 </Card>
             </>

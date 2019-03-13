@@ -7,12 +7,19 @@ import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
+import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import { mainListItems, secondaryListItems } from './listItems';
-import SimpleTable from './SimpleTable';
+import IconButton from '@material-ui/core/IconButton'
+import Person from '@material-ui/icons/Person';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ExitToApp from '@material-ui/icons/ExitToApp';
+import SimpleTable from './list';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 const drawerWidth = 240;
 
@@ -20,112 +27,94 @@ const styles = theme => ({
     root: {
         display: 'flex',
     },
-    toolbar: {
-        paddingRight: 24, // keep right padding when drawer closed
-    },
-    toolbarIcon: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-end',
-        padding: '0 8px',
-        ...theme.mixins.toolbar,
-    },
     appBar: {
-        zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(['width', 'margin'], {
+        transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
     },
     appBarShift: {
-        marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(['width', 'margin'], {
-            easing: theme.transitions.easing.sharp,
+        marginLeft: drawerWidth,
+        transition: theme.transitions.create(['margin', 'width'], {
+            easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
     },
     menuButton: {
         marginLeft: 12,
-        marginRight: 36,
+        marginRight: 20,
     },
-    menuButtonHidden: {
+    hide: {
         display: 'none',
     },
-    title: {
-        flexGrow: 1,
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
     },
     drawerPaper: {
-        position: 'relative',
-        whiteSpace: 'nowrap',
         width: drawerWidth,
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
     },
-    drawerPaperClose: {
-        overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        width: theme.spacing.unit * 7,
-        [theme.breakpoints.up('sm')]: {
-            width: theme.spacing.unit * 9,
-        },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: '0 8px',
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-end',
     },
+
     appBarSpacer: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
-        height: '100vh',
-        overflow: 'auto',
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        marginLeft: -drawerWidth,
     },
-    chartContainer: {
-        marginLeft: -22,
+    contentShift: {
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.easeOut,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
     },
-    tableContainer: {
-        height: 320,
-    },
-    h5: {
-        marginBottom: theme.spacing.unit * 2,
-    },
+
 });
 
  class Dashboard extends React.Component {
     state = {
-        open: true,
+        open: false,
     };
 
-    handleDrawerOpen = () => {
-        this.setState({ open: true });
-    };
+     handleDrawerOpen = () => {
+         this.setState({ open: true });
+     };
 
-    handleDrawerClose = () => {
-        this.setState({ open: false });
-    };
+     handleDrawerClose = () => {
+         this.setState({ open: false });
+     };
 
-    render() {
-        const { classes } = this.props;
+     render() {
+         const { classes, theme } = this.props;
+         const { open } = this.state;
 
         return (
             <div className={classes.root}>
                 <CssBaseline />
                 <AppBar
-                    position="absolute"
-                    className={classNames(classes.appBar, this.state.open && classes.appBarShift)}
+                    position="fixed"
+                    className={classNames(classes.appBar, {[classes.appBarShift]: open,})}
                 >
-                    <Toolbar disableGutters={!this.state.open} className={classes.toolbar}>
+                    <Toolbar disableGutters={!open}>
                         <IconButton
                             color="inherit"
                             aria-label="Open drawer"
                             onClick={this.handleDrawerOpen}
-                            className={classNames(
-                                classes.menuButton,
-                                this.state.open && classes.menuButtonHidden,
-                            )}
-                        >a
+                            className={classNames(classes.menuButton, open && classes.hide)}
+                        >
+                            <MenuIcon />
                         </IconButton>
                         <Typography
                             component="h1"
@@ -134,37 +123,54 @@ const styles = theme => ({
                             noWrap
                             className={classes.title}
                         >
-                            EasyAccess
+                            Meetings
                         </Typography>
-                        <IconButton color="inherit">
-                            <Badge  >
-                                a
-                            </Badge>
-                        </IconButton>
+
                     </Toolbar>
                 </AppBar>
                 <Drawer
-                    variant="permanent"
+                    className={classes.drawer}
+                    variant="persistent"
+                    anchor="left"
+                    open={open}
                     classes={{
-                        paper: classNames(classes.drawerPaper, !this.state.open && classes.drawerPaperClose),
+                        paper: classes.drawerPaper,
                     }}
-                    open={this.state.open}
                 >
-                    <div className={classes.toolbarIcon}>
+                    <div className={classes.drawerHeader}>
                         <IconButton onClick={this.handleDrawerClose}>
-                           a
+                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                         </IconButton>
                     </div>
                     <Divider />
-                    <List>{mainListItems}</List>
+                    <List>
+                        <div>
+                            <ListItem button component="a" href="/user-profile">
+                                <ListItemIcon>
+                                    <Person/>
+                                </ListItemIcon>
+                                <ListItemText primary="Profile" />
+                            </ListItem>
+                        </div>
+                    </List>
                     <Divider />
-                    <List>{secondaryListItems}</List>
+                    <List>
+                        <div>
+                            <ListSubheader inset></ListSubheader>
+                            <ListItem button component="a" href="/">
+                                <ListItemIcon>
+                                    <ExitToApp/>
+                                </ListItemIcon>
+                                <ListItemText primary="Logout" />
+                            </ListItem>
+                        </div>
+                    </List>
                 </Drawer>
-                <main className={classes.content}>
+                <main className={classNames(classes.content, {
+                    [classes.contentShift]: open,
+                })}>
                     <div className={classes.appBarSpacer} />
-                    <Typography variant="h4" gutterBottom component="h2">
-                        Meetings
-                    </Typography>
+
                     <div className={classes.tableContainer}>
                         <SimpleTable />
                     </div>
@@ -176,7 +182,8 @@ const styles = theme => ({
 
 Dashboard.propTypes = {
     classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
 };
 
 
-export default withStyles(styles)(Dashboard);
+export default withStyles(styles, { withTheme: true })(Dashboard);

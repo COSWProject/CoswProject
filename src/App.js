@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import schedule from './schedule/schedule';
 import Login from './Login/Login';
-import signup from './UserSignUp/SignUp';
 import {Assistance} from './Meeting/Assistance';
 import Access from './Meeting/Access';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
@@ -14,7 +13,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        localStorage.setItem('email', 'escuela@escuelaing.edu.co');
+        localStorage.setItem('email', 'daniel.orozco@mail.escuelaing.edu.co');
         localStorage.setItem('password', 'cosw2019');
     }
 
@@ -23,12 +22,11 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <div>
-                        <Route exact path="/" component={Login}/>
+			            <Route exact path="/" component={Login}/>
                         <Route path="/confirm-assistance" component={Assistance}/>
                         <Route path="/meeting-access" component={Access}/>
                         <Route path="/user-profile" component={UserProfile}/>
                         <Route path="/enterprise/newMeeting" component={NewMeeting}/>
-                        <Route path="/Signup/user" component={signup}/>
                         <Route path="/schedule" component={schedule}/>
                         <Route path="/company/profile" component={CompanyProfile}/>
                     </div>
