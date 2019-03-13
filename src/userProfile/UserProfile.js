@@ -1,6 +1,5 @@
 import React from "react";
 import './UserProfile.css';
-import Paper from "@material-ui/core/es/Paper/Paper";
 import profile from './../img/userProfile.svg';
 import {
     Divider,
@@ -11,8 +10,7 @@ import {
     List,
     ListItem,
     CardContent,
-    ListItemIcon,
-    FormLabel, FormControl, FormGroup
+    ListItemIcon
 } from "@material-ui/core";
 import classNames from "classnames";
 import withStyles from "@material-ui/core/es/styles/withStyles";
@@ -32,7 +30,6 @@ import PropTypes from 'prop-types';
 import AppBar from "@material-ui/core/AppBar";
 import Card from "@material-ui/core/Card";
 import ListItemText from "@material-ui/core/ListItemText";
-import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
     root: {

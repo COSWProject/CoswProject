@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19a7fcb0-c73d-43a2-a4d8-3fb3544c6ea3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Meeting/Assistance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Meeting/Assistance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/userProfile/UserProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/userProfile/UserProfile.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -45,11 +44,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Meeting/Assistance.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+            <state relative-caret-position="600">
+              <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/userProfile/UserProfile.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="58" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -111,11 +119,12 @@
         <option value="$PROJECT_DIR$/src/schedule/listItems.js" />
         <option value="$PROJECT_DIR$/src/Login/Login.js" />
         <option value="$PROJECT_DIR$/src/schedule/list.js" />
-        <option value="$PROJECT_DIR$/src/Meeting/Assistance.js" />
         <option value="$PROJECT_DIR$/src/UserSignUp/BasicInfo.js" />
         <option value="$PROJECT_DIR$/src/UserSignUp/SignUp.js" />
         <option value="$PROJECT_DIR$/src/schedule/schedule.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/Meeting/Assistance.js" />
+        <option value="$PROJECT_DIR$/src/userProfile/UserProfile.js" />
       </list>
     </option>
   </component>
@@ -165,6 +174,12 @@
               <item name="EasyAccess" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="schedule" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EasyAccess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EasyAccess" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="userProfile" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EasyAccess" type="b2602c69:ProjectViewProjectNode" />
@@ -349,8 +364,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Meeting/Assistance.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+        <state relative-caret-position="600">
+          <caret line="40" column="52" selection-start-line="40" selection-start-column="52" selection-end-line="40" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/userProfile/UserProfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="58" selection-start-line="31" selection-start-column="58" selection-end-line="31" selection-end-column="58" />
         </state>
       </provider>
     </entry>

@@ -38,7 +38,7 @@ export class Assistance extends React.Component {
         </div>
         <div className="buttons">
            <Link className="accept" href='/meeting-access'> ACCEPT </Link>
-           <Link className="decline" href='/meeting-access'> DECLINE </Link>
+           <Link className="decline" href='/schedule'> DECLINE </Link>
         </div>
       </div>
       </>
