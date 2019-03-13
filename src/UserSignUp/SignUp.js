@@ -12,7 +12,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BasicInfo from './BasicInfo';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import { Link } from 'react-router-dom'
 
 const styles = theme => ({
     appBar: {
@@ -94,8 +95,9 @@ class Checkout extends React.Component {
                 <CssBaseline />
                 <AppBar position="static">
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <MenuIcon />
+                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" component={Link} to="/">
+
+                            <KeyboardArrowLeft />
                         </IconButton>
                         <Typography variant="h6" color="inherit" noWrap>
                             Sign Up
@@ -103,7 +105,6 @@ class Checkout extends React.Component {
                     </Toolbar>
                 </AppBar>
                 <main className={classes.layout}>
-                    <Paper className={classes.paper}>
 
                         <Stepper activeStep={activeStep} className={classes.stepper}>
                             {steps.map(label => (
@@ -125,6 +126,9 @@ class Checkout extends React.Component {
                                         variant="contained"
                                         color="primary"
                                         className={classes.button}
+                                        component="a"
+
+                                        href="/"
                                     >
                                         Finish
                                     </Button>
@@ -134,7 +138,8 @@ class Checkout extends React.Component {
                                     {getStepContent(activeStep)}
                                     <div className={classes.buttons}>
                                         {activeStep !== 0 && (
-                                            <Button onClick={this.handleBack} className={classes.button}>
+                                            <Button onClick={this.handleBack} className={classes.button}
+                                                    >
                                                 Back
                                             </Button>
                                         )}
@@ -143,6 +148,7 @@ class Checkout extends React.Component {
                                             color="primary"
                                             onClick={this.handleNext}
                                             className={classes.button}
+
                                         >
                                             {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
                                         </Button>
@@ -150,7 +156,6 @@ class Checkout extends React.Component {
                                 </React.Fragment>
                             )}
                         </React.Fragment>
-                    </Paper>
                 </main>
             </React.Fragment>
         );
