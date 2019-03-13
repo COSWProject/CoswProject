@@ -1,0 +1,25 @@
+.layout {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.paper {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px;
+}
+
+.form {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    text-align: left;
+}
