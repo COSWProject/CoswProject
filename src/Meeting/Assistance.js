@@ -12,7 +12,7 @@ import Typography from "@material-ui/core/Typography";
 export class Assistance extends React.Component {
 
   changePage(){
-    alert("CONCHA");
+    alert("ACCEPTED");
   }
 
   render(){

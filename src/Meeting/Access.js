@@ -14,18 +14,24 @@ import Typography from "@material-ui/core/Typography";
 export class Access extends React.Component {
 
   changePage(){
-    alert("CONCHA");
+    alert("ACCEPTED");
   }
+
+  handleReturn() {
+      alert("SUSA");
+  }
+
 
   render(){
 
     const {classes} = this.props;
 
+
     return (
       <>
       <CssBaseline/>
-      <AppBar position="static">
-        <Toolbar>
+      <AppBar position="static" >
+        <Toolbar onClick="handleReturn()">
           <IconButton className="menuButton" color="inherit" aria-label="Menu">
             <KeyboardArrowLeft/>
           </IconButton>
@@ -36,13 +42,13 @@ export class Access extends React.Component {
       </AppBar>
       <div className="content_access">
         <div className="pass">
-          <p>Present thus at the reception, to pass over.</p>
+          <p>Present this at the reception, to pass over.</p>
           <img src={QR}/>
-          <p className="company">Escuela Colombiana de Ingenieros Julio Garavito</p>
+          <p className="company">Escuela Colombiana de Ingeniería Julio Garavito</p>
           <h2>Important things you need to remember</h2>
           <p>Hour: 8:30</p>
           <p>Address: AK 45 (Autonorte) #205-59</p>
-          <p>Invited: Oswaldo Castillo</p>
+          <p>Invited by: Oswaldo Castillo</p>
         </div>
       </div>
       </>
