@@ -51,7 +51,7 @@ class Login extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        window.location.href = "/company/profile"
+        window.location.href = "/company/meetings"
     }
 
     render() {
