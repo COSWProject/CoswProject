@@ -9,7 +9,7 @@ import AssignmentInd from '@material-ui/icons/AssignmentInd';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import SimpleModal from "./SimpleModal";
+import SimpleModal from "../Component/SimpleModal";
 import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
@@ -123,9 +123,9 @@ class SignUp extends Component {
             }
         ];
 
-        const inputTexts = inputs.map((x) => {
+        const inputTexts = inputs.map((x, i) => {
             return (
-                <>
+                <div key={i}>
                     <CssBaseline/>
                     <TextField
                         required
@@ -141,12 +141,13 @@ class SignUp extends Component {
                         }}
                     />
                     <br/>
-                </>
+                </div>
             );
         });
 
         const form = (
-            <form className={classes.form} onSubmit={this.handleSubmit}>
+            <form className={classes.form}
+                  onSubmit={this.handleSubmit}>
                 <Typography component="h1" variant="h4">
                     Company sign up
                 </Typography>
@@ -167,7 +168,9 @@ class SignUp extends Component {
             <>
                 <SimpleModal
                     elements={form}
-                    buttonName="Sign Up"/>
+                    buttonName="Company Sign Up"
+                    buttonSize="large"
+                />
             </>
         );
     }
