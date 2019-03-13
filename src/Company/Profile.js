@@ -86,7 +86,7 @@ class Profile extends Component {
     };
 
     handleLogout() {
-        window.location.href = "/company/main"
+        window.location.href = "/"
     }
 
     render() {

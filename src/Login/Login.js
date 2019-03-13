@@ -3,11 +3,10 @@ import TextField from '@material-ui/core/TextField';
 import './Login.css';
 import VpnKey from '@material-ui/icons/VpnKey';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import {Button, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
+import {Button, Card, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
 import Link from "@material-ui/core/Link";
 import withStyles from "@material-ui/core/styles/withStyles";
 import SimpleModal from "../Component/SimpleModal";
-import App from "../App";
 import AppBarComponent from "../Component/AppBar";
 import CompanySignIn from "../Company/Login";
 import CompanySignUp from "../Company/SignUp";
@@ -21,13 +20,22 @@ const styles = theme => ({
         backgroundColor: "black",
         margin: theme.spacing.unit,
         textAlign: "center"
-    }, card: {
-        marginTop: "7%"
     }, button: {
         width: "70%",
         position: "left"
-    }, divButton: {
-        textAlign: "right"
+    }, divButtons: {
+        width: "50%",
+        marginLeft: "auto",
+        marginRight: "auto",
+        overflow: "auto"
+    }, card: {
+        width: "85%",
+        marginRight: "auto",
+        marginLeft: "auto",
+        borderRadius: "0",
+        marginTop: "1%",
+        paddingBottom: "3%",
+        paddingTop: "3%"
     }
 });
 
@@ -138,9 +146,23 @@ class Login extends Component {
         return (
             <>
                 <AppBarComponent/>
-                <SimpleModal elements={form} buttonName="Login"/>
-                <CompanySignIn/>
-                <CompanySignUp/>
+                <Card className={classes.card}>
+                    <Typography component="h2" variant="display3" gutterBottom>
+                        Welcome to Easy Access
+                        <Typography variant="h6" gutterBottom>
+                            Here you can manage your company access or view your own invitations
+                        </Typography>
+                    </Typography>
+                    <div className={classes.divButtons}>
+                        <SimpleModal
+                            elements={form}
+                            buttonName="User Sign in"
+                            buttonSize="large"
+                        />
+                        <CompanySignIn/>
+                        <CompanySignUp/>
+                    </div>
+                </Card>
             </>
         );
     }

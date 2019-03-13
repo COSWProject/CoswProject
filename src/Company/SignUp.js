@@ -168,7 +168,7 @@ class SignUp extends Component {
             <>
                 <SimpleModal
                     elements={form}
-                    buttonName="Sign Up"
+                    buttonName="Company Sign Up"
                     buttonSize="large"
                 />
             </>
