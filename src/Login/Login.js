@@ -9,6 +9,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import SimpleModal from "../Component/SimpleModal";
 import App from "../App";
 import AppBarComponent from "../Component/AppBar";
+import CompanySignIn from "../Company/Login";
+import CompanySignUp from "../Company/SignUp";
 
 const styles = theme => ({
     text: {
@@ -137,6 +139,8 @@ class Login extends Component {
             <>
                 <AppBarComponent/>
                 <SimpleModal elements={form} buttonName="Login"/>
+                <CompanySignIn/>
+                <CompanySignUp/>
             </>
         );
     }
