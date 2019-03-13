@@ -1,24 +1,16 @@
 import React, {Component} from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import CompanyLogin from "./Login";
 import CompanySignup from "./SignUp";
-import IconButton from "@material-ui/core/IconButton";
-import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
 import {Card, CardContent} from "@material-ui/core";
+import ArrowBackIos from '@material-ui/icons/ArrowBackIos';
+import IconButton from "@material-ui/core/IconButton";
+import AppBar from "../Component/AppBar";
 
 
-const styles = theme => ({
-    grow: {
-        flexGrow: 1,
-        textAlign: "left"
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    }, divMain: {
+const styles = {
+    divMain: {
         marginLeft: "auto",
         marginRight: "auto",
         width: "50%",
@@ -28,7 +20,7 @@ const styles = theme => ({
     }, card: {
         minWidth: "275"
     }
-});
+}
 
 class Main extends Component {
 
@@ -45,23 +37,20 @@ class Main extends Component {
 
         const {classes} = this.props;
 
+        const backButton = (
+            <IconButton
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Menu"
+                onClick={this.handleBackButton}
+            >
+                <ArrowBackIos/>
+            </IconButton>
+        );
+
         return (
             <>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton
-                            className={classes.menuButton}
-                            color="inherit"
-                            aria-label="Menu"
-                            onClick={this.handleBackButton}
-                        >
-                            <ArrowBackIos/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Easy Access
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+                <AppBar button={backButton}/>
                 <div className={classes.divMain}>
                     <Card className={classes.card}>
                         <CardContent>
@@ -69,7 +58,8 @@ class Main extends Component {
                                 Company component
                             </Typography>
                             <Typography variant="subtitle1" gutterBottom>
-                                subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
+                                subtitle1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis
+                                tenetur
                             </Typography>
                             <CompanyLogin/>
                             <CompanySignup/>

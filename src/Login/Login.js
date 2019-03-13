@@ -6,7 +6,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import {Button, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
 import Link from "@material-ui/core/Link";
 import withStyles from "@material-ui/core/styles/withStyles";
-import SimpleModal from "./../Company/SimpleModal";
+import SimpleModal from "../Component/SimpleModal";
+import App from "../App";
+import AppBarComponent from "../Component/AppBar";
 
 const styles = theme => ({
     text: {
@@ -133,6 +135,7 @@ class Login extends Component {
 
         return (
             <>
+                <AppBarComponent/>
                 <SimpleModal elements={form} buttonName="Login"/>
             </>
         );
