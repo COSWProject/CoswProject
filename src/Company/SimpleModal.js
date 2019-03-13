@@ -7,7 +7,8 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = theme => ({
     buttonFilter: {
-        width: "10%"
+        width: "15%",
+        margin: theme.spacing.unit,
     }, leftIcon: {
         marginRight: theme.spacing.unit,
     }, dialog: {
@@ -41,13 +42,14 @@ class FormDialog extends React.Component {
                 <Button
                     color="primary"
                     variant="contained"
+                    size={this.props.buttonSize}
                     className={classes.buttonFilter}
                     onClick={this.handleClickOpen}
                 >
                     {this.props.buttonName}
                 </Button>
                 <Dialog
-                    fullWidth="true"
+                    fullWidth={true}
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"

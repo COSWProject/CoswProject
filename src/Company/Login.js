@@ -51,7 +51,7 @@ class Login extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log("Redirect to company profile");
+        window.location.href = "/company/profile"
     }
 
     render() {
@@ -73,9 +73,9 @@ class Login extends Component {
             }
         ]
 
-        const inputTexts = inputs.map((x) => {
+        const inputTexts = inputs.map((x, i) => {
             return (
-                <>
+                <div key={i}>
                     <TextField
                         required
                         className={classes.text}
@@ -90,7 +90,7 @@ class Login extends Component {
                         }}
                     />
                     <br/>
-                </>
+                </div>
             );
         });
 
@@ -115,7 +115,11 @@ class Login extends Component {
 
         return (
             <>
-                <SimpleModal elements={form} buttonName="Login"/>
+                <SimpleModal
+                    elements={form}
+                    buttonName="Sign In"
+                    buttonSize="large"
+                />
             </>
         );
     }
