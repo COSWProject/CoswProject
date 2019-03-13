@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './App.css';
 import schedule from './schedule/schedule';
-import {Login} from './Login/Login';
+import Login from './Login/Login';
 import signup from './UserSignUp/SignUp';
 import {Assistance} from './Meeting/Assistance';
 import {Access} from './Meeting/Access';
-import {Route, Link, BrowserRouter as Router} from 'react-router-dom';
+import {Route, BrowserRouter as Router} from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
 import NewMeeting from "./Company/NewMeeting";
 import CompanyMain from "./Company/Main";
@@ -29,7 +29,7 @@ class App extends Component {
                         <Route path="/UserProfile" component={UserProfile}/>
                         <Route path="/enterprise/newMeeting" component={NewMeeting}/>
                         <Route path="/Signup/user" component={signup}/>
-                        <Route exact path="/Schedule" component={schedule}/>
+                        <Route path="/schedule" component={schedule}/>
                         <Route path="/company/main" component={CompanyMain}/>
                     </div>
                 </Router>
