@@ -145,7 +145,7 @@ class Login extends Component {
 
         return (
             <>
-                <AppBarComponent/>
+                <AppBarComponent title="Easy Access"/>
                 <Card className={classes.card}>
                     <Typography component="h2" variant="display3" gutterBottom>
                         Welcome to Easy Access
