@@ -68,7 +68,13 @@ function AddressForm() {
                     />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <TextField id="state" name="state" label="State/Province/Region" fullWidth />
+                    <TextField
+                    required
+                    id="state"
+                    name="state"
+                    label="State/Region"
+                    fullWidth
+                    />
                 </Grid>
                 <Grid item xs={12} sm={6}>
                     <TextField

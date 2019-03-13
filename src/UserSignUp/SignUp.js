@@ -13,7 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import BasicInfo from './BasicInfo';
 import IconButton from '@material-ui/core/IconButton';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import SimpleModal from "../Component/SimpleModal";
 
 const styles = theme => ({
     appBar: {
@@ -90,75 +91,72 @@ class Checkout extends React.Component {
         const { classes } = this.props;
         const { activeStep } = this.state;
 
+
+        const form = (
+
+                        <main className={classes.layout}>
+                            <Stepper activeStep={activeStep} className={classes.stepper}>
+                                                {steps.map(label => (
+                                                    <Step key={label}>
+                                                        <StepLabel>{label}</StepLabel>
+                                                    </Step>
+                                                ))}
+                                            </Stepper>
+                                            <React.Fragment>
+                                                {activeStep === steps.length ? (
+                                                    <React.Fragment>
+                                                        <Typography variant="h5" gutterBottom>
+                                                            Thank you.
+                                                        </Typography>
+                                                        <Typography variant="subtitle1">
+                                                            Sign up successfully.
+                                                        </Typography>
+                                                        <Button
+                                                            variant="contained"
+                                                            color="primary"
+                                                            className={classes.button}
+                                                            component="a"
+
+                                                            href="/"
+                                                        >
+                                                            Finish
+                                                        </Button>
+                                                    </React.Fragment>
+                                                ) : (
+                                                    <React.Fragment>
+                                                        {getStepContent(activeStep)}
+                                                        <div className={classes.buttons}>
+                                                            {activeStep !== 0 && (
+                                                                <Button onClick={this.handleBack} className={classes.button}
+                                                                        >
+                                                                    Back
+                                                                </Button>
+                                                            )}
+                                                            <Button
+                                                                variant="contained"
+                                                                color="primary"
+                                                                onClick={this.handleNext}
+                                                                className={classes.button}
+
+                                                            >
+                                                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                                            </Button>
+                                                        </div>
+                                                    </React.Fragment>
+                                                )}
+                                            </React.Fragment>
+                                    </main>
+                );
+
         return (
-            <React.Fragment>
-                <CssBaseline />
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu" component={Link} to="/">
-
-                            <KeyboardArrowLeft />
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            Sign Up
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <main className={classes.layout}>
-
-                        <Stepper activeStep={activeStep} className={classes.stepper}>
-                            {steps.map(label => (
-                                <Step key={label}>
-                                    <StepLabel>{label}</StepLabel>
-                                </Step>
-                            ))}
-                        </Stepper>
-                        <React.Fragment>
-                            {activeStep === steps.length ? (
-                                <React.Fragment>
-                                    <Typography variant="h5" gutterBottom>
-                                        Thank you.
-                                    </Typography>
-                                    <Typography variant="subtitle1">
-                                        Sign up successfully.
-                                    </Typography>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        className={classes.button}
-                                        component="a"
-
-                                        href="/"
-                                    >
-                                        Finish
-                                    </Button>
-                                </React.Fragment>
-                            ) : (
-                                <React.Fragment>
-                                    {getStepContent(activeStep)}
-                                    <div className={classes.buttons}>
-                                        {activeStep !== 0 && (
-                                            <Button onClick={this.handleBack} className={classes.button}
-                                                    >
-                                                Back
-                                            </Button>
-                                        )}
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            onClick={this.handleNext}
-                                            className={classes.button}
-
-                                        >
-                                            {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                        </Button>
-                                    </div>
-                                </React.Fragment>
-                            )}
-                        </React.Fragment>
-                </main>
-            </React.Fragment>
-        );
+                    <>
+                        <SimpleModal
+                            elements={form}
+                            buttonName="User Sign up"
+                            buttonSize="large"
+                        />
+                    </>
+                );
     }
 }
 

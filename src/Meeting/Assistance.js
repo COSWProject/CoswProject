@@ -20,7 +20,7 @@ export class Assistance extends React.Component {
       <CssBaseline/>
       <AppBar position="static">
         <Toolbar>
-          <IconButton className="menuButton" color="inherit" aria-label="Menu">
+          <IconButton className="menuButton" color="inherit" aria-label="Menu" href="/schedule" >
             <KeyboardArrowLeft/>
           </IconButton>
           <Typography variant="h6" color="inherit" className="grow">

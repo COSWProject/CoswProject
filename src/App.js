@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import './App.css';
 import schedule from './schedule/schedule';
 import Login from './Login/Login';
-import signup from './UserSignUp/SignUp';
 import {Assistance} from './Meeting/Assistance';
 import Access from './Meeting/Access';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
@@ -28,7 +27,6 @@ class App extends Component {
                         <Route path="/meeting-access" component={Access}/>
                         <Route path="/user-profile" component={UserProfile}/>
                         <Route path="/enterprise/newMeeting" component={NewMeeting}/>
-                        <Route path="/Signup/user" component={signup}/>
                         <Route path="/schedule" component={schedule}/>
                         <Route path="/company/profile" component={CompanyProfile}/>
                     </div>
