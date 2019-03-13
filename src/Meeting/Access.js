@@ -30,10 +30,12 @@ export class Access extends React.Component {
     return (
       <>
       <CssBaseline/>
-      <AppBar position="static" >
-        <Toolbar onClick="handleReturn()">
+      <AppBar position="static">
+        <Toolbar>
           <IconButton className="menuButton" color="inherit" aria-label="Menu">
-            <KeyboardArrowLeft/>
+            <Link className="return" href='/confirm-assistance'>
+            å
+            </Link>
           </IconButton>
           <Typography variant="h6" color="inherit" className="grow">
             QR PASS
