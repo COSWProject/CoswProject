@@ -21,7 +21,7 @@ class AppBarComponent extends Component {
                 <Toolbar>
                     {this.props.button}
                     <Typography variant="h6" color="inherit" className={classes.grow}>
-                        Easy Access
+                        {this.props.title}
                     </Typography>
                 </Toolbar>
             </AppBar>
