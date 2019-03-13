@@ -13,7 +13,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from "@material-ui/core/Divider";
 import {List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 
-const drawerWidth = 240;
+const drawerWidth = 340;
 
 const styles = theme => ({
     root: {

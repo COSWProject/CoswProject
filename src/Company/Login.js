@@ -115,7 +115,11 @@ class Login extends Component {
 
         return (
             <>
-                <SimpleModal elements={form} buttonName="Login"/>
+                <SimpleModal
+                    elements={form}
+                    buttonName="Sign In"
+                    buttonSize="large"
+                />
             </>
         );
     }

@@ -146,7 +146,8 @@ class SignUp extends Component {
         });
 
         const form = (
-            <form className={classes.form} onSubmit={this.handleSubmit}>
+            <form className={classes.form}
+                  onSubmit={this.handleSubmit}>
                 <Typography component="h1" variant="h4">
                     Company sign up
                 </Typography>
@@ -167,7 +168,9 @@ class SignUp extends Component {
             <>
                 <SimpleModal
                     elements={form}
-                    buttonName="Sign Up"/>
+                    buttonName="Sign Up"
+                    buttonSize="large"
+                />
             </>
         );
     }
