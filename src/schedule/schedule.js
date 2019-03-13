@@ -145,7 +145,7 @@ const styles = theme => ({
                     <Divider />
                     <List>
                         <div>
-                            <ListItem button component="a" href="/UserProfile">
+                            <ListItem button component="a" href="/user-profile">
                                 <ListItemIcon>
                                     <Person/>
                                 </ListItemIcon>

@@ -14,7 +14,7 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        localStorage.setItem('email', 'escuela@escuelaing.edu.co');
+        localStorage.setItem('email', 'daniel.orozco@mail.escuelaing.edu.co');
         localStorage.setItem('password', 'cosw2019');
     }
 
@@ -23,7 +23,7 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <div>
-                        <Route exact path="/" component={Login}/>
+			            <Route exact path="/" component={Login}/>
                         <Route path="/confirm-assistance" component={Assistance}/>
                         <Route path="/meeting-access" component={Access}/>
                         <Route path="/user-profile" component={UserProfile}/>
