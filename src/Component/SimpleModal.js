@@ -2,12 +2,13 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
-import Tune from '@material-ui/icons/Tune';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = theme => ({
     buttonFilter: {
-        width: "10%"
+        width: "40%",
+        margin: theme.spacing.unit,
+        borderRadius: "0"
     }, leftIcon: {
         marginRight: theme.spacing.unit,
     }, dialog: {
@@ -41,13 +42,14 @@ class FormDialog extends React.Component {
                 <Button
                     color="primary"
                     variant="contained"
+                    size={this.props.buttonSize}
                     className={classes.buttonFilter}
                     onClick={this.handleClickOpen}
                 >
                     {this.props.buttonName}
                 </Button>
                 <Dialog
-                    fullWidth="true"
+                    fullWidth={true}
                     open={this.state.open}
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"

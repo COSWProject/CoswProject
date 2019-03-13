@@ -20,15 +20,14 @@ img{
   width: auto;
 }
 
-
-.accept {
+ .accept{
   width: 50%;
-  color:green;
+  color:green !important;
   cursor: pointer;
 }
 
-.decline{
+ .decline{
   width: 50%;
-  color: red;
+  color: red !important;
   cursor: pointer;
 }

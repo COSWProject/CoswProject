@@ -8,12 +8,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowLeft from "@material-ui/core/es/internal/svg-icons/KeyboardArrowLeft";
 import Typography from "@material-ui/core/Typography";
+import { Redirect } from 'react-router-dom'
 
 export class Assistance extends React.Component {
 
-  changePage(){
-    alert("ACCEPTED");
-  }
 
   render(){
     return (
@@ -39,8 +37,8 @@ export class Assistance extends React.Component {
           <p>Invited: Oswaldo Castillo</p>
         </div>
         <div className="buttons">
-          <div className="accept" onClick= {this.changePage}> ACCEPT</div>
-          <div className="decline"> DECLINE</div>
+           <Link className="accept" href='/meeting-access'> ACCEPT </Link>
+           <Link className="decline" href='/Signup/user'> DECLINE </Link>
         </div>
       </div>
       </>

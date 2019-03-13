@@ -30,3 +30,7 @@ img{
 p[class="company"]{
   font-size: 25px;
 }
+
+.return {
+  color: #91a3b0 !important;
+}
