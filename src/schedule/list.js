@@ -8,11 +8,11 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
     root: {
-
-        overflowX: 'auto',
+        flexGrow: 1
     },
     inline: {
         display: 'inline',
@@ -22,8 +22,8 @@ const styles = theme => ({
 function list(props) {
     const { classes } = props;
     return (
-        <>
-        <List>
+        <div className={classes.root}>
+        <List  className={classes.root}>
             <ListItem alignItems="flex-start" component="a" href="/confirm-assistance">
                         <ListItemAvatar>
                             <Avatar alt="PWC" />
@@ -219,7 +219,7 @@ function list(props) {
                 />
             </ListItem>
         </List>
-        </>
+        </div>
     );
 }
 
