@@ -10,6 +10,7 @@ import NewMeeting from "./Company/NewMeeting";
 import CompanyProfile from "./Company/Profile";
 import UserSignUp from "./UserSignUp/SignUp";
 import CompanySignUp from "./Company/SignUp";
+import CompanyMeetings from "./Company/Meetings";
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
                         <Route path="/company/profile" component={CompanyProfile}/>
                         <Route path="/user/signup" component={UserSignUp}/>
                         <Route path="/company/signup" component={CompanySignUp}/>
+                        <Route path="/company/meetings" component={CompanyMeetings}/>
                     </div>
                 </Router>
             </div>
