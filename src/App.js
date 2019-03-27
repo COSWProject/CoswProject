@@ -26,7 +26,7 @@ class App extends Component {
                         <Route path="/confirm-assistance" component={Assistance}/>
                         <Route path="/meeting-access" component={Access}/>
                         <Route path="/user-profile" component={UserProfile}/>
-                        <Route path="/enterprise/newMeeting" component={NewMeeting}/>
+                        <Route path="/company/new-meeting" component={NewMeeting}/>
                         <Route path="/schedule" component={schedule}/>
                         <Route path="/company/profile" component={CompanyProfile}/>
                     </div>
