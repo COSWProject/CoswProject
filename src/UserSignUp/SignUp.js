@@ -1,10 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
@@ -12,9 +8,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BasicInfo from './BasicInfo';
 import IconButton from '@material-ui/core/IconButton';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import { Link } from 'react-router-dom';
-import SimpleModal from "../Component/SimpleModal";
+import AppBarComponent from "../Component/AppBar";
+import ArrowBack from "@material-ui/icons/ArrowBack";
 
 const styles = theme => ({
     appBar: {
@@ -50,7 +45,10 @@ const styles = theme => ({
     button: {
         marginTop: theme.spacing.unit * 3,
         marginLeft: theme.spacing.unit,
-    },
+    }, backButton: {
+        marginLeft: -12,
+        marginRight: 20
+    }
 });
 
 const steps = ['Basic information'];
@@ -58,7 +56,7 @@ const steps = ['Basic information'];
 function getStepContent(step) {
     switch (step) {
         case 0:
-            return <BasicInfo />;
+            return <BasicInfo/>;
         default:
             throw new Error('Unknown step');
     }
@@ -87,76 +85,86 @@ class Checkout extends React.Component {
         });
     };
 
+    handleBackButton() {
+        window.location.href = "/";
+    }
+
     render() {
-        const { classes } = this.props;
-        const { activeStep } = this.state;
+        const {classes} = this.props;
+        const {activeStep} = this.state;
 
 
         const form = (
 
-                        <main className={classes.layout}>
-                            <Stepper activeStep={activeStep} className={classes.stepper}>
-                                                {steps.map(label => (
-                                                    <Step key={label}>
-                                                        <StepLabel>{label}</StepLabel>
-                                                    </Step>
-                                                ))}
-                                            </Stepper>
-                                            <React.Fragment>
-                                                {activeStep === steps.length ? (
-                                                    <React.Fragment>
-                                                        <Typography variant="h5" gutterBottom>
-                                                            Thank you.
-                                                        </Typography>
-                                                        <Typography variant="subtitle1">
-                                                            Sign up successfully.
-                                                        </Typography>
-                                                        <Button
-                                                            variant="contained"
-                                                            color="primary"
-                                                            className={classes.button}
-                                                            component="a"
+            <main className={classes.layout}>
+                <Stepper activeStep={activeStep} className={classes.stepper}>
+                    {steps.map(label => (
+                        <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+                <React.Fragment>
+                    {activeStep === steps.length ? (
+                        <React.Fragment>
+                            <Typography variant="h5" gutterBottom>
+                                Thank you.
+                            </Typography>
+                            <Typography variant="subtitle1">
+                                Sign up successfully.
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                className={classes.button}
+                                component="a"
 
-                                                            href="/"
-                                                        >
-                                                            Finish
-                                                        </Button>
-                                                    </React.Fragment>
-                                                ) : (
-                                                    <React.Fragment>
-                                                        {getStepContent(activeStep)}
-                                                        <div className={classes.buttons}>
-                                                            {activeStep !== 0 && (
-                                                                <Button onClick={this.handleBack} className={classes.button}
-                                                                        >
-                                                                    Back
-                                                                </Button>
-                                                            )}
-                                                            <Button
-                                                                variant="contained"
-                                                                color="primary"
-                                                                onClick={this.handleNext}
-                                                                className={classes.button}
+                                href="/"
+                            >
+                                Finish
+                            </Button>
+                        </React.Fragment>
+                    ) : (
+                        <React.Fragment>
+                            {getStepContent(activeStep)}
+                            <div className={classes.buttons}>
+                                {activeStep !== 0 && (
+                                    <Button onClick={this.handleBack} className={classes.button}
+                                    >
+                                        Back
+                                    </Button>
+                                )}
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={this.handleNext}
+                                    className={classes.button}
 
-                                                            >
-                                                                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                                            </Button>
-                                                        </div>
-                                                    </React.Fragment>
-                                                )}
-                                            </React.Fragment>
-                                    </main>
-                );
+                                >
+                                    {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                                </Button>
+                            </div>
+                        </React.Fragment>
+                    )}
+                </React.Fragment>
+            </main>
+        );
+
+        const backButton = (
+            <IconButton
+                className={classes.backButton}
+                onClick={this.handleBackButton}
+            >
+                <ArrowBack/>
+            </IconButton>
+        );
 
         return (
-                    <>
-                        <SimpleModal
-                            elements={form}
-                            buttonName="User Sign up"
-                            buttonSize="large"
-                        />
-                    </>
-                );
+            <>
+                <AppBarComponent title="Sign Up" button={backButton}/>
+                {form}
+            </>
+        );
     }
 }
 

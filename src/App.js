@@ -8,6 +8,8 @@ import {Route, BrowserRouter as Router} from 'react-router-dom';
 import UserProfile from "./userProfile/UserProfile";
 import NewMeeting from "./Company/NewMeeting";
 import CompanyProfile from "./Company/Profile";
+import UserSignUp from "./UserSignUp/SignUp";
+import CompanySignUp from "./Company/SignUp";
 
 class App extends Component {
 
@@ -22,13 +24,15 @@ class App extends Component {
             <div className="App">
                 <Router>
                     <div>
-			            <Route exact path="/" component={Login}/>
+                        <Route exact path="/" component={Login}/>
                         <Route path="/confirm-assistance" component={Assistance}/>
                         <Route path="/meeting-access" component={Access}/>
                         <Route path="/user-profile" component={UserProfile}/>
                         <Route path="/company/new-meeting" component={NewMeeting}/>
                         <Route path="/schedule" component={schedule}/>
                         <Route path="/company/profile" component={CompanyProfile}/>
+                        <Route path="/user/signup" component={UserSignUp}/>
+                        <Route path="/company/signup" component={CompanySignUp}/>
                     </div>
                 </Router>
             </div>

@@ -11,21 +11,23 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import SimpleModal from "../Component/SimpleModal";
 import Typography from "@material-ui/core/Typography";
+import PaperComponent from "../Component/PaperComponent";
+import AppBarComponent from "../Component/AppBar";
+import IconButton from "@material-ui/core/IconButton";
+import ArrowBack from "@material-ui/icons/ArrowBack";
 
 const styles = theme => ({
-    form: {
-        marginTop: "7%"
-    }, text: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: "100%"
+    text: {
+        width: "90%"
     }, main: {
         textAlign: 'center'
     }, icon: {
         marginRight: "1%"
     }, button: {
-        width: "70%"
-    }, menuButton: {
+        width: '80%',
+        marginBottom: 20,
+        marginTop: 20,
+    }, backButton: {
         marginLeft: -12,
         marginRight: 20,
     }
@@ -82,6 +84,10 @@ class SignUp extends Component {
         e.preventDefault();
 
         console.log("Logged")
+    }
+
+    handleBackButton() {
+        window.location.href = "/";
     }
 
     render() {
@@ -164,13 +170,19 @@ class SignUp extends Component {
             </form>
         );
 
+        const backButton = (
+            <IconButton
+                className={classes.backButton}
+                onClick={this.handleBackButton}
+            >
+                <ArrowBack/>
+            </IconButton>
+        );
+
         return (
             <>
-                <SimpleModal
-                    elements={form}
-                    buttonName="Company Sign Up"
-                    buttonSize="large"
-                />
+                <AppBarComponent title="Sign Up" button={backButton}/>
+                <PaperComponent form={form}/>
             </>
         );
     }

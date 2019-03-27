@@ -4,26 +4,16 @@ import './Login.css';
 import VpnKey from '@material-ui/icons/VpnKey';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import {Button, Card, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
-import Link from "@material-ui/core/Link";
 import withStyles from "@material-ui/core/styles/withStyles";
-import SimpleModal from "../Component/SimpleModal";
 import AppBarComponent from "../Component/AppBar";
-import CompanySignIn from "../Company/Login";
-import CompanySignUp from "../Company/SignUp";
-import UserSignUp from "../UserSignUp/SignUp";
+import PaperComponent from "../Component/PaperComponent";
 
 const styles = theme => ({
     text: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: "100%"
-    }, avatar: {
-        backgroundColor: "black",
-        margin: theme.spacing.unit,
-        textAlign: "center"
+        width: "90%"
     }, button: {
-        width: "70%",
-        position: "left"
+        width: "80%",
+        marginBottom: 20
     }, divButtons: {
         width: "50%",
         marginLeft: "auto",
@@ -37,6 +27,8 @@ const styles = theme => ({
         marginTop: "1%",
         paddingBottom: "3%",
         paddingTop: "3%"
+    }, title: {
+        paddingBottom: 20
     }
 });
 
@@ -51,7 +43,8 @@ class Login extends Component {
     }
 
     handleLogin() {
-        if (this.state.email === localStorage.getItem('email') && this.state.password === localStorage.getItem('password')) {
+        if (this.state.email === localStorage.getItem('email') &&
+            this.state.password === localStorage.getItem('password')) {
             console.log('Logged');
         }
         this.setState({
@@ -107,65 +100,50 @@ class Login extends Component {
                             )
                         }}
                     />
-                    <br/>
                 </>
             );
         });
 
+        const formButton = (
+            <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                type="submit"
+            >
+                Sign In
+            </Button>
+        );
+
         const form = (
             <form className={classes.form}>
-                <Typography component="h1" variant="h4" color="primary">
+                <Typography component="h1" variant="h4">
                     EasyAccess
                 </Typography>
-                <br/>
                 {inputTexts}
-                <br/>
                 <FormControlLabel
                     control={<Checkbox color="primary"/>}
-                    label="Keep me logged in"/>
-                <br/>
-                <Button
-                    type="submit"
-                    variant="outlined"
-                    color="primary"
-                    className={classes.button}
-                    action={this.handleLogin}
-                    href="/schedule"
-                >
-                    Sign in
-                </Button>
-                <br/>
-                <Link
-                    href="/signup"
-                    variant="body2"
-                >
-                    Don't have an account? Create Account
-                </Link>
+                    label="Keep me logged in"
+                />
+                {formButton}
             </form>
+        );
+
+        const createAccount = (
+            <>
+                <Typography className={classes.title}>
+                    Don't have an user account? Create one <a href="/user/signup">here</a>
+                </Typography>
+                <Typography className={classes.title}>
+                    Don't have a company account? Create one <a href="/company/signup">here</a>
+                </Typography>
+            </>
         );
 
         return (
             <>
                 <AppBarComponent title="Easy Access"/>
-                <Card className={classes.card}>
-                    <Typography component="h2" variant="display3" gutterBottom>
-                        Welcome to Easy Access
-                        <Typography variant="h6" gutterBottom>
-                            Here you can manage your company access or view your own invitations
-                        </Typography>
-                    </Typography>
-                    <div className={classes.divButtons}>
-                        <SimpleModal
-                            elements={form}
-                            buttonName="User Sign in"
-                            buttonSize="large"
-                        />
-                        <UserSignUp/>
-                        <CompanySignIn/>
-                        <CompanySignUp/>
-
-                    </div>
-                </Card>
+                <PaperComponent form={form} createAccount={createAccount}/>
             </>
         );
     }
