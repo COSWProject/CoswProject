@@ -1,33 +1,24 @@
 import React, {Component} from 'react';
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import KeyboardArrowLeft from "@material-ui/core/es/internal/svg-icons/KeyboardArrowLeft";
-import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
-import DateRange from '@material-ui/icons/DateRange';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Place from '@material-ui/icons/Place';
-import WatchLater from '@material-ui/icons/WatchLater';
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import AppBarComponent from "../Component/AppBarComponent";
+import PaperComponent from "../Component/PaperComponent";
+import ArrowBack from '@material-ui/icons/ArrowBack';
+import IconButton from "@material-ui/core/IconButton";
 
 const styles = theme => ({
-    menuButton: {
+    backButton: {
         marginLeft: -12,
         marginRight: 20,
-    }, grow: {
-        flexGrow: 1,
-        textAlign: "left"
     }, text: {
-        width: 350
-    }, icon: {
-        marginRight: "1%"
+        width: "90%"
     }, form: {
         marginTop: "7%"
     }, button: {
-        width: 300
+        width: '80%',
+        marginBottom: 20,
+        marginTop: 20,
     }
 });
 
@@ -65,6 +56,10 @@ class NewMeeting extends Component {
         this.setState({personCharge: e.target.value});
     }
 
+    handleBackButton() {
+        window.location.href = "/company/meetings"
+    }
+
     handleSubmit(e) {
 
         e.preventDefault();
@@ -81,28 +76,25 @@ class NewMeeting extends Component {
             {
                 label: "Date",
                 type: "date",
-                onchange: this.handleChangeDate,
-                icon: <DateRange className={classes.icon}/>
+                onChange: this.handleChangeDate,
+                default: "2019-01-01"
             }, {
                 label: "Visitor ID",
                 type: "number",
-                onchange: this.handleChangeVisitorId,
-                icon: <AccountCircle className={classes.icon}/>
+                onChange: this.handleChangeVisitorId,
             }, {
                 label: "Host Name",
                 type: "text",
-                onchange: this.handleChangeHostName,
-                icon: <Place className={classes.icon}/>
+                onChange: this.handleChangeHostName,
             }, {
                 label: "Hour",
                 type: "time",
-                onchange: this.handleChangeHour,
-                icon: <WatchLater className={classes.icon}/>
+                onChange: this.handleChangeHour,
+                default: "00:00"
             }, {
                 label: "Person in charge",
                 type: "text",
-                onchange: this.handleChangePersonCharge,
-                icon: <AccountCircle className={classes.icon}/>
+                onChange: this.handleChangePersonCharge,
             }
         ]
 
@@ -114,43 +106,52 @@ class NewMeeting extends Component {
                         className={classes.text}
                         label={x.label}
                         margin="normal"
-                        onChange={x.onchange}
+                        onChange={x.onChange}
                         type={x.type}
-                        InputProps={{
-                            startAdornment: (
-                                x.icon
-                            )
-                        }}
+                        defaultValue={x.default}
                     />
-                    <br/>
                 </>
             );
         });
 
+        const formButton = (
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+            >
+                Create
+            </Button>
+        );
+
+        const form = (
+            <form className={classes.form} onSubmit={this.handleSubmit}>
+                {inputTexts}
+                {formButton}
+            </form>
+        );
+
+        const backButton = (
+            <IconButton
+                className={classes.backButton}
+                onClick={this.handleBackButton}
+            >
+                <ArrowBack/>
+            </IconButton>
+        );
+
         return (
             <>
-                <CssBaseline/>
-                <AppBar position="static">
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <KeyboardArrowLeft/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Create Meeting
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <form className={classes.form} onSubmit={this.handleSubmit}>
-                    {inputTexts}
-                    <Button
-                        type="submit"
-                        variant="outlined"
-                        color="primary"
-                        className={classes.button}
-                    >
-                        Sign Up
-                    </Button>
-                </form>
+                <AppBarComponent
+                    title="New meeting"
+                    button={backButton}
+
+                />
+                <PaperComponent
+                    form={form}
+                    title="New meeting"
+                />
             </>
         );
     }

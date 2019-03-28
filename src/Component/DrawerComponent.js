@@ -60,7 +60,7 @@ const styles = theme => ({
             duration: theme.transitions.duration.enteringScreen,
         }),
         marginLeft: 0,
-    },
+    }
 });
 
 class DrawerComponent extends Component {
@@ -93,13 +93,13 @@ class DrawerComponent extends Component {
 
         const items = [
             {
-                label: "Logout",
-                icon: <ExitToApp/>,
-                onClick: this.handleLogout
-            }
+            label: "Logout",
+            icon: <ExitToApp/>,
+            onClick: this.handleLogout
+        }
         ];
 
-        const drawerItems = items.map((x, i) => {
+        const defaultItems = items.map((x, i) => {
             return (
                 <ListItem
                     button
@@ -154,8 +154,8 @@ class DrawerComponent extends Component {
                 </div>
                 <Divider/>
                 <List>
-                    {drawerItems}
                     {this.props.drawerItems}
+                    {defaultItems}
                 </List>
             </Drawer>
         );
@@ -167,7 +167,8 @@ class DrawerComponent extends Component {
                 })}
             >
                 <div className={classes.drawerHeader}/>
-
+                {this.props.elements}
+                {this.props.fabButton}
             </main>
         );
 

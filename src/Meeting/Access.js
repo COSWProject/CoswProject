@@ -4,7 +4,7 @@ import QR from './../img/QR.png';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBack from '@material-ui/icons/ArrowBack';
-import AppBar from "../Component/AppBar";
+import AppBar from "../Component/AppBarComponent";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 const styles = {
@@ -25,7 +25,7 @@ class Access extends React.Component {
     }
 
     handleBackPage() {
-        window.location.href = "/schedule"
+        window.location.href = "/meetings"
     }
 
     render() {

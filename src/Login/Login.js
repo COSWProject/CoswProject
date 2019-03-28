@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import './Login.css';
 import {Button, Card, Checkbox, FormControl, FormControlLabel, Radio, Typography} from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
-import AppBarComponent from "../Component/AppBar";
+import AppBarComponent from "../Component/AppBarComponent";
 import PaperComponent from "../Component/PaperComponent";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormLabel from "@material-ui/core/FormLabel";
@@ -52,7 +52,7 @@ class Login extends Component {
         //Todo
 
         e.preventDefault();
-        
+
     }
 
     handleLoginCompany(e) {

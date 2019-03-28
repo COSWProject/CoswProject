@@ -11,7 +11,7 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import PaperComponent from "../Component/PaperComponent";
-import AppBarComponent from "../Component/AppBar";
+import AppBarComponent from "../Component/AppBarComponent";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBack from "@material-ui/icons/ArrowBack";
 
