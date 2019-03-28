@@ -48,14 +48,19 @@ class Login extends Component {
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
-    handleLoginUser() {
+    handleLoginUser(e) {
         //Todo
-        alert("Handle user")
+
+        e.preventDefault();
+        
     }
 
-    handleLoginCompany() {
+    handleLoginCompany(e) {
         //Todo
-        alert("Handle company")
+
+        e.preventDefault();
+
+        window.location.href = "/company/meetings"
     }
 
     handleEmailChange(e) {
@@ -119,7 +124,7 @@ class Login extends Component {
 
         const form = (
             <form className={classes.form}
-                  onSubmit={this.state.value === "user" ? this.handleLoginUser() : this.handleLoginCompany()}
+                  onSubmit={this.state.value === "user" ? this.handleLoginUser : this.handleLoginCompany}
             >
                 {inputTexts}
                 <FormControlLabel
