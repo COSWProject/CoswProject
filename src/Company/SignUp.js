@@ -9,7 +9,6 @@ import AssignmentInd from '@material-ui/icons/AssignmentInd';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import SimpleModal from "../Component/SimpleModal";
 import Typography from "@material-ui/core/Typography";
 import PaperComponent from "../Component/PaperComponent";
 import AppBarComponent from "../Component/AppBar";
@@ -154,9 +153,6 @@ class SignUp extends Component {
         const form = (
             <form className={classes.form}
                   onSubmit={this.handleSubmit}>
-                <Typography component="h1" variant="h4">
-                    Company sign up
-                </Typography>
                 <br/>
                 {inputTexts}
                 <Button
@@ -181,8 +177,14 @@ class SignUp extends Component {
 
         return (
             <>
-                <AppBarComponent title="Sign Up" button={backButton}/>
-                <PaperComponent form={form}/>
+                <AppBarComponent
+                    title="Sign Up"
+                    button={backButton}
+                />
+                <PaperComponent
+                    form={form}
+                    title="Company sign up"
+                />
             </>
         );
     }

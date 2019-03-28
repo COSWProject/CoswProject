@@ -29,6 +29,8 @@ class PaperComponent extends Component {
         return (
             <>
                 <Paper className={classes.paper}>
+                    {this.props.radioButtons}
+                    <AccountCircle color="primary" className={classes.icon}/>
                     <Typography component="h1" variant="h5">
                         {this.props.title}
                     </Typography>

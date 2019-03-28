@@ -6,6 +6,7 @@ import VpnKey from '@material-ui/icons/VpnKey';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Button from "@material-ui/core/Button";
 import SimpleModal from "../Component/SimpleModal";
+import PaperComponent from "../Component/PaperComponent";
 
 const styles = theme => ({
     text: {
@@ -115,11 +116,7 @@ class Login extends Component {
 
         return (
             <>
-                <SimpleModal
-                    elements={form}
-                    buttonName="Company Sign In"
-                    buttonSize="large"
-                />
+                <PaperComponent form={form}/>
             </>
         );
     }

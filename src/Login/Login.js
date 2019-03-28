@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import './Login.css';
-import VpnKey from '@material-ui/icons/VpnKey';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import {Button, Card, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
+import {Button, Card, Checkbox, FormControl, FormControlLabel, Radio, Typography} from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
 import AppBarComponent from "../Component/AppBar";
 import PaperComponent from "../Component/PaperComponent";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormLabel from "@material-ui/core/FormLabel";
 
 const styles = theme => ({
     text: {
@@ -36,34 +36,43 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: "", password: ""};
-        this.handleLogin = this.handleLogin.bind(this);
+        this.state = {
+            email: "",
+            password: "",
+            value: "user"
+        };
+
+        this.handleChangeUser = this.handleChangeUser.bind(this);
+        this.handleChangeCompany = this.handleChangeCompany.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
-    handleLogin() {
-        if (this.state.email === localStorage.getItem('email') &&
-            this.state.password === localStorage.getItem('password')) {
-            console.log('Logged');
-        }
-        this.setState({
-            email: "",
-            password: ""
-        });
+    handleLoginUser() {
+        //Todo
+        alert("Handle user")
+    }
+
+    handleLoginCompany() {
+        //Todo
+        alert("Handle company")
     }
 
     handleEmailChange(e) {
         alert("email");
-        this.setState({
-            email: e.target.value
-        })
+        this.setState({email: e.target.value})
     }
 
     handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
+        this.setState({password: e.target.value})
+    }
+
+    handleChangeUser(e) {
+        this.setState({value: e.target.value});
+    }
+
+    handleChangeCompany(e) {
+        this.setState({value: e.target.value});
     }
 
     render() {
@@ -74,13 +83,11 @@ class Login extends Component {
             {
                 label: "Username",
                 onChange: this.handleEmailChange,
-                icon: <AccountCircle className={classes.icon}/>
             },
             {
                 label: "Password",
                 type: "password",
                 onChange: this.handlePasswordChange,
-                icon: <VpnKey className={classes.icon}/>
             }
         ];
 
@@ -94,11 +101,6 @@ class Login extends Component {
                         margin="normal"
                         onChange={x.onchange}
                         type={x.type}
-                        InputProps={{
-                            startAdornment: (
-                                x.icon
-                            )
-                        }}
                     />
                 </>
             );
@@ -111,15 +113,14 @@ class Login extends Component {
                 className={classes.button}
                 type="submit"
             >
-                Sign In
+                {this.state.value === "user" ? "Sign in user" : "Sign in company"}
             </Button>
         );
 
         const form = (
-            <form className={classes.form}>
-                <Typography component="h1" variant="h4">
-                    EasyAccess
-                </Typography>
+            <form className={classes.form}
+                  onSubmit={this.state.value === "user" ? this.handleLoginUser() : this.handleLoginCompany()}
+            >
                 {inputTexts}
                 <FormControlLabel
                     control={<Checkbox color="primary"/>}
@@ -129,21 +130,58 @@ class Login extends Component {
             </form>
         );
 
+        const accountUser = (
+            <Typography className={classes.title}>
+                Don't have an account? Create one <a href="/user/signup">here</a>
+            </Typography>
+        );
+
+        const accountCompany = (
+            <Typography className={classes.title}>
+                Don't have an account? Create one <a href="/company/signup">here</a>
+            </Typography>
+        );
+
         const createAccount = (
             <>
-                <Typography className={classes.title}>
-                    Don't have an user account? Create one <a href="/user/signup">here</a>
-                </Typography>
-                <Typography className={classes.title}>
-                    Don't have a company account? Create one <a href="/company/signup">here</a>
-                </Typography>
+                {this.state.value === "user" ? accountUser : accountCompany}
             </>
+        );
+
+        const radioButtons = (
+            <div>
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup
+                        value={this.state.value}
+                        row
+                    >
+                        <FormControlLabel
+                            value="user"
+                            control={<Radio color="primary"/>}
+                            label="User"
+                            onClick={this.handleChangeUser}
+                        />
+                        <FormControlLabel
+                            value="company"
+                            control={<Radio color="primary"/>}
+                            label="Company"
+                            onClick={this.handleChangeCompany}
+                        />
+                    </RadioGroup>
+                </FormControl>
+            </div>
         );
 
         return (
             <>
                 <AppBarComponent title="Easy Access"/>
-                <PaperComponent form={form} createAccount={createAccount}/>
+                <PaperComponent
+                    radioButtons={radioButtons}
+                    form={form}
+                    createAccount={createAccount}
+                    title="Easy access"
+                />
             </>
         );
     }
