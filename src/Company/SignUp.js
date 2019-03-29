@@ -1,19 +1,15 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import GpsFixed from '@material-ui/icons/GpsFixed';
 import Email from '@material-ui/icons/Email';
 import Phone from '@material-ui/icons/Phone';
-import VpnKey from '@material-ui/icons/VpnKey';
-import AssignmentInd from '@material-ui/icons/AssignmentInd';
 import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
 import PaperComponent from "../Component/PaperComponent";
 import AppBarComponent from "../Component/AppBarComponent";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBack from "@material-ui/icons/ArrowBack";
+import axios from 'axios';
 
 const styles = theme => ({
     text: {
@@ -52,6 +48,7 @@ class SignUp extends Component {
         this.handleChangePhone = this.handleChangePhone.bind(this);
         this.handleChangeNit = this.handleChangeNit.bind(this);
         this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChangeName(e) {
@@ -82,7 +79,22 @@ class SignUp extends Component {
 
         e.preventDefault();
 
-        console.log("Logged")
+        axios.post('http://localhost:8080/token/new', {
+            name: this.state.name,
+            ubication: this.state.ubication,
+            email: this.state.email,
+            phoneNumber: this.state.phone,
+            nit: this.state.nit,
+            password: this.state.password
+        })
+            .then(() => {
+                alert("Company created");
+                window.location.href = "/"
+            })
+            .catch((error) => {
+                console.log(error)
+                alert("Error creating the company");
+            })
     }
 
     handleBackButton() {
@@ -99,32 +111,26 @@ class SignUp extends Component {
                 label: "Name",
                 type: "text",
                 onchange: this.handleChangeName,
-                icon: <AccountCircle className={classes.icon}/>
             }, {
                 label: "Ubication",
                 type: "text",
                 onchange: this.handleChangeUbication,
-                icon: <GpsFixed className={classes.icon}/>
             }, {
                 label: "Email",
                 type: "text",
                 onchange: this.handleChangeEmail,
-                icon: <Email className={classes.icon}/>
             }, {
                 label: "Phone",
                 type: "number",
                 onchange: this.handleChangePhone,
-                icon: <Phone className={classes.icon}/>
             }, {
                 label: "Nit",
                 type: "number",
                 onchange: this.handleChangeNit,
-                icon: <AssignmentInd className={classes.icon}/>
             }, {
                 label: "Password",
                 type: "password",
                 onchange: this.handleChangePassword,
-                icon: <VpnKey className={classes.icon}/>
             }
         ];
 
@@ -139,30 +145,29 @@ class SignUp extends Component {
                         margin="normal"
                         onChange={x.onchange}
                         type={x.type}
-                        InputProps={{
-                            startAdornment: (
-                                x.icon
-                            )
-                        }}
                     />
                     <br/>
                 </div>
             );
         });
 
+        const formButton = (
+            <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+            >
+                Sign Up
+            </Button>
+        );
+
         const form = (
-            <form className={classes.form}
-                  onSubmit={this.handleSubmit}>
-                <br/>
+            <form
+                className={classes.form}
+                onSubmit={this.handleSubmit}>
                 {inputTexts}
-                <Button
-                    type="submit"
-                    variant="outlined"
-                    color="primary"
-                    className={classes.button}
-                >
-                    Sign Up
-                </Button>
+                {formButton}
             </form>
         );
 
