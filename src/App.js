@@ -16,8 +16,6 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        localStorage.setItem('email', 'daniel.orozco@mail.escuelaing.edu.co');
-        localStorage.setItem('password', 'cosw2019');
     }
 
     render() {

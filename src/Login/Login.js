@@ -66,7 +66,8 @@ class Login extends Component {
             password: this.state.password
         })
             .then((response) => {
-                localStorage.setItem("token", response.data.accessToken)
+                localStorage.setItem("token", response.data.accessToken);
+                localStorage.setItem("companyLogged", this.state.email)
                 window.location.href = "/company/meetings"
             })
             .catch((error) => {
