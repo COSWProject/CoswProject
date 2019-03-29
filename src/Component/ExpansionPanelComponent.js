@@ -4,6 +4,7 @@ import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from "@material-ui/core/Typography";
+import withStyles from "@material-ui/core/es/styles/withStyles";
 
 const styles = theme => ({
     heading: {
@@ -29,3 +30,5 @@ class ExpansionPanelComponent extends Component {
         );
     }
 }
+
+export default withStyles(styles)(ExpansionPanelComponent);
