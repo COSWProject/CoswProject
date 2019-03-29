@@ -82,6 +82,9 @@ class DrawerComponent extends Component {
     };
 
     handleLogout() {
+
+        localStorage.clear();
+
         window.location.href = "/"
     }
 

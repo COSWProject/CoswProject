@@ -7,6 +7,7 @@ import AppBarComponent from "../Component/AppBarComponent";
 import PaperComponent from "../Component/PaperComponent";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormLabel from "@material-ui/core/FormLabel";
+import axios from 'axios';
 
 const styles = theme => ({
     text: {
@@ -46,6 +47,7 @@ class Login extends Component {
         this.handleChangeCompany = this.handleChangeCompany.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleLoginCompany = this.handleLoginCompany.bind(this);
     }
 
     handleLoginUser(e) {
@@ -56,15 +58,24 @@ class Login extends Component {
     }
 
     handleLoginCompany(e) {
-        //Todo
 
         e.preventDefault();
 
-        window.location.href = "/company/meetings"
+        axios.post('http://localhost:8080/token/login', {
+            email: this.state.email,
+            password: this.state.password
+        })
+            .then((response) => {
+                localStorage.setItem("token", response.data.accessToken)
+                window.location.href = "/company/meetings"
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("User or password incorrect");
+            })
     }
 
     handleEmailChange(e) {
-        alert("email");
         this.setState({email: e.target.value})
     }
 
@@ -86,7 +97,7 @@ class Login extends Component {
 
         const inputs = [
             {
-                label: "Username",
+                label: "Email",
                 onChange: this.handleEmailChange,
             },
             {
@@ -96,7 +107,7 @@ class Login extends Component {
             }
         ];
 
-        const inputTexts = inputs.map((x) => {
+        const inputTexts = inputs.map((x, i) => {
             return (
                 <>
                     <TextField
@@ -104,7 +115,7 @@ class Login extends Component {
                         className={classes.text}
                         label={x.label}
                         margin="normal"
-                        onChange={x.onchange}
+                        onChange={x.onChange}
                         type={x.type}
                     />
                 </>
