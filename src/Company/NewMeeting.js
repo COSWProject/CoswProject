@@ -6,6 +6,7 @@ import AppBarComponent from "../Component/AppBarComponent";
 import PaperComponent from "../Component/PaperComponent";
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import IconButton from "@material-ui/core/IconButton";
+import axios from 'axios';
 
 const styles = theme => ({
     backButton: {
@@ -34,6 +35,19 @@ class NewMeeting extends Component {
             hour: "",
             personCharge: ""
         }
+
+        this.handleChangeDate = this.handleChangeDate.bind(this);
+        this.handleChangeVisitorId = this.handleChangeVisitorId.bind(this);
+        this.handleChangeHostName = this.handleChangeHostName.bind(this);
+        this.handleChangeHour = this.handleChangeHour.bind(this);
+        this.handleChangePersonCharge = this.handleChangePersonCharge.bind(this);
+
+        this.instance = axios.create({
+            baseURL: 'http://localhost:8080/api/',
+            timeout: 1000,
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+        });
+
     }
 
     handleChangeDate(e) {
@@ -61,11 +75,7 @@ class NewMeeting extends Component {
     }
 
     handleSubmit(e) {
-
         e.preventDefault();
-
-        console.log("Metting created");
-
     }
 
     render() {
@@ -146,7 +156,6 @@ class NewMeeting extends Component {
                 <AppBarComponent
                     title="New meeting"
                     button={backButton}
-
                 />
                 <PaperComponent
                     form={form}

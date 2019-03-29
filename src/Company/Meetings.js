@@ -1,11 +1,11 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import DrawerComponent from "../Component/DrawerComponent";
-import MeetingRoom from '@material-ui/icons/MeetingRoom';
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import Fab from "@material-ui/core/Fab";
 import Add from "@material-ui/icons/Add";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import ExpansionPanelComponent from "../Component/ExpansionPanelComponent";
 
 const styles = theme => ({
     fab: {
@@ -21,7 +21,7 @@ class Meetings extends React.Component {
         window.location.href = "/company/new-meeting"
     }
 
-    handleProfile(){
+    handleProfile() {
         window.location.href = "/company/profile"
     }
 
@@ -61,11 +61,23 @@ class Meetings extends React.Component {
             </Fab>
         );
 
+        const panels = (
+            <>
+                <ExpansionPanelComponent
+                    title="Open meetings"
+                />
+                <ExpansionPanelComponent
+                    title="Closed meetings"
+                />
+            </>
+        );
+
         return (
             <DrawerComponent
                 title="My meetings"
                 drawerItems={drawerItems}
                 fabButton={fabButton}
+                elements={panels}
             />
         );
     }
