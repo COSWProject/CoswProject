@@ -1,22 +1,8 @@
 import React from "react";
 import './UserProfile.css';
 import profile from './../img/userProfile.svg';
-import {
-    Divider,
-    Drawer,
-    Typography,
-    Toolbar,
-    IconButton,
-    List,
-    ListItem,
-    CardContent,
-    ListItemIcon
-} from "@material-ui/core";
-import classNames from "classnames";
+import {Typography, ListItem, CardContent, ListItemIcon, ListItemText, Card, Fab, InputAdornment} from "@material-ui/core";
 import withStyles from "@material-ui/core/es/styles/withStyles";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import LogoutIcon from '@material-ui/icons/ExitToApp';
 import ViewAgendaIcon from '@material-ui/icons/ViewAgenda';
 import SmartphoneIcon from '@material-ui/icons/Smartphone';
 import PersonIcon from '@material-ui/icons/Person';
@@ -26,217 +12,271 @@ import PlaceIcon from '@material-ui/icons/Place';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import GroupIcon from '@material-ui/icons/Group';
 import WorkIcon from '@material-ui/icons/Work';
+import EditIcon from '@material-ui/icons/Edit';
+import SaveIcon from '@material-ui/icons/Save';
+import LockIcon from '@material-ui/icons/Lock';
 import PropTypes from 'prop-types';
-import AppBar from "@material-ui/core/AppBar";
-import Card from "@material-ui/core/Card";
-import ListItemText from "@material-ui/core/ListItemText";
+import DrawerComponent from "../Component/DrawerComponent";
+import TextField from "@material-ui/core/es/TextField/TextField";
 
 const styles = theme => ({
-    root: {
-        display: 'flex'
-    },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${250}px)`,
-        marginLeft: 250,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    layout: {
-        width: 'auto',
-        marginLeft: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit * 2,
-        marginTop: theme.spacing.unit * 12,
-        [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
-            width: 600,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            marginTop: theme.spacing.unit * 12,
-        },
-    },
-    menuButton: {
-        marginLeft: 12,
-        marginRight: 20,
-    },
-    hide: {
-        display: 'none',
+    fab: {
+        position: "fixed",
+        bottom: theme.spacing.unit * 2,
+        right: theme.spacing.unit * 2,
     },
     profile: {
         width: '30%'
     },
-    list: {
-        width: 250,
-    },
     card: {
         minWidth: 275,
     },
-    drawer: {
-        width: 250,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: 250,
-    },
-    drawerHeader: {
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 8px',
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing.unit * 3,
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -250,
-    },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-    }
 });
 
 class UserProfile extends React.Component{
 
     constructor(props) {
         super(props);
-        this.handleDrawerClose = this.handleDrawerClose.bind(this);
-        this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
+        this.state = {
+            readOnly: true,
+            name: "Daniel Alejandro Castañeda Orozco",
+            password: "",
+            id: 1013672927,
+            email: "daniel.orozco@mail.escuelaing.edu.co",
+            mobilePhone: 3145689756,
+            address: "Cra 85C #7a-56",
+            homePhone: 5697865,
+            occupation: "Student",
+            organization: "Escuela Colombiana de Ingeniería Julio Garavito"
+
+        };
+        this.handleEditProfile = this.handleEditProfile.bind(this);
+        this.handleSaveProfile = this.handleSaveProfile.bind(this);
+        this.handleChangeName = this.handleChangeName.bind(this);
+        this.handleChangePassword = this.handleChangePassword.bind(this);
+        this.handleChangeID = this.handleChangeID.bind(this);
+        this.handleChangeEmail = this.handleChangeEmail.bind(this);
+        this.handleChangeMobilePhone = this.handleChangeMobilePhone.bind(this);
+        this.handleChangeAddress = this.handleChangeAddress.bind(this);
+        this.handleChangeHomePhone = this.handleChangeHomePhone.bind(this);
+        this.handleChangeOccupation = this.handleChangeOccupation.bind(this);
+        this.handleChangeOrganization = this.handleChangeOrganization.bind(this);
     }
 
-    state = {
-        open: false
-    };
-
-    handleDrawerOpen() {
-        this.setState({
-            open: true
-        });
-    };
-
-    handleDrawerClose() {
-        this.setState({
-            open: false
-        });
-    };
-
-    handleLogout() {
-        window.location.href='/';
-    }
-
-    handleSchedule() {
+    static handleSchedule() {
         window.location.href='/schedule';
+    }
+
+    handleEditProfile(){
+        this.setState({
+            readOnly: false
+        })
+    }
+
+    handleSaveProfile(){
+        this.setState({
+            readOnly: true
+        })
+    }
+
+    handleChangeName(e){
+        this.setState({
+            name: e.target.value
+        })
+    }
+
+    handleChangePassword(e){
+        this.setState({
+            password: e.target.value
+        })
+    }
+
+    handleChangeID(e){
+        this.setState({
+            id: e.target.value
+        })
+    }
+
+    handleChangeEmail(e){
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    handleChangeMobilePhone(e){
+        this.setState({
+            mobilePhone: e.target.value
+        })
+    }
+
+    handleChangeAddress(e){
+        this.setState({
+            address: e.target.value
+        })
+    }
+
+    handleChangeHomePhone(e){
+        this.setState({
+            homePhone: e.target.value
+        })
+    }
+
+    handleChangeOccupation(e){
+        this.setState({
+            occupation: e.target.value
+        })
+    }
+
+    handleChangeOrganization(e){
+        this.setState({
+            organization: e.target.value
+        })
     }
 
     render() {
 
         const { classes} = this.props;
 
-        return (
-            <div className={classes.root}>
-                <AppBar position="fixed" color="primary"
-                        className={classNames(classes.appBar, {[classes.appBarShift]: this.state.open})}>
-                    <Toolbar disableGutters={!this.state.open}>
-                        <IconButton
-                            onClick={this.handleDrawerOpen}
-                            color="inherit"
-                            aria-label="Menu"
-                            className={classNames(classes.menuButton, this.state.open && classes.hide)}>
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" noWrap>
-                            Profile
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    open={this.state.open}
-                    variant="persistent"
-                    anchor="left"
-                    className={classes.drawer}
-                    classes={{paper: classes.drawerPaper}}
+        const imgProfile = (
+            <Card className={classes.card}>
+                <CardContent>
+                    <img src={profile} className={classes.profile} alt=""/>
+                    <Typography variant="subtitle2" gutterBottom>
+                        <b>{this.state.name}</b>
+                    </Typography>
+                </CardContent>
+            </Card>
+        );
+
+        const fabButton = (
+            <Fab
+                className={classes.fab}
+                color="primary"
+            >
+                {this.state.readOnly === false ? <SaveIcon onClick={this.handleSaveProfile} /> : <EditIcon onClick={this.handleEditProfile}/>}
+            </Fab>
+        );
+
+        const items = [
+            {
+                label: "Home",
+                icon: <ViewAgendaIcon/>,
+                onClick: UserProfile.handleSchedule
+            }
+        ];
+
+        const optionsDrawer = items.map((x, i) => {
+            return (
+                <ListItem
+                    button
+                    onClick={x.onClick}
+                    key={i}
                 >
-                    <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            <ChevronLeftIcon/>
-                        </IconButton>
-                    </div>
-                    <Divider/>
-                    <div className={classes.list}>
-                        <Card className={classes.card}>
-                            <CardContent>
-                                <img src={profile} className={classes.profile} alt=""/>
-                                <Typography variant="subtitle2" gutterBottom>
-                                    <b>Daniel Alejandro Castañeda Orozco</b>
-                                </Typography>
-                            </CardContent>
-                        </Card>
-                        <List>
-                            <ListItem button onClick={this.handleSchedule}>
-                                <ListItemIcon><ViewAgendaIcon/></ListItemIcon>
-                                <ListItemText primary="Home"/>
-                            </ListItem>
-                            <Divider/>
-                            <ListItem button onClick={this.handleLogout}>
-                                <ListItemIcon><LogoutIcon/></ListItemIcon>
-                                <ListItemText primary="Logout"/>
-                            </ListItem>
-                        </List>
-                    </div>
-                </Drawer>
-                <main className={classNames(classes.content, {[classes.contentShift]: this.state.open})}>
-                    <div className={classes.layout}>
-                        <form className={classes.form}>
-                            <img src={profile} className={classes.profile} alt=""/>
-                            <div className="grid">
-                                <PersonIcon/>
-                                <Typography>Daniel Alejandro Castañeda Orozco</Typography>
-                            </div>
-                            <div className="grid">
-                                <CreditCardIcon/>
-                                <Typography>1013672927</Typography>
-                            </div>
-                            <div className="grid">
-                                <LocalPostOfficeIcon/>
-                                <Typography>daniel.orozco@mail.escuelaing.edu.co</Typography>
-                            </div>
-                            <div className="grid">
-                                <SmartphoneIcon/>
-                                <Typography>3145689756</Typography>
-                            </div>
-                            <div className="grid">
-                                <PlaceIcon/>
-                                <Typography>Cra 85C #7a-56</Typography>
-                            </div>
-                            <div className="grid">
-                                <LocalPhoneIcon/>
-                                <Typography>5697865</Typography>
-                            </div>
-                            <div className="grid">
-                                <GroupIcon/>
-                                <Typography>Student</Typography>
-                            </div>
-                            <div className="grid">
-                                <WorkIcon/>
-                                <Typography>Escuela Colombiana de Ingeniería Julio Garavito</Typography>
-                            </div>
-                        </form>
-                    </div>
-                </main>
-            </div>
+                    <ListItemIcon>
+                        {x.icon}
+                    </ListItemIcon>
+                    <ListItemText primary={x.label}/>
+                </ListItem>
+            );
+        });
+
+        const itemsProfile = [
+            {
+                label: "Name",
+                defaultValue: this.state.name,
+                icon: <PersonIcon/>,
+                onChange: this.handleChangeName
+            },
+            {
+                label: "Password",
+                defaultValue: this.state.password,
+                icon: <LockIcon/>,
+                type: "password",
+                onChange: this.handleChangePassword
+            },
+            {
+                label: "ID",
+                defaultValue: this.state.id,
+                icon: <CreditCardIcon/>,
+                onChange: this.handleChangeID
+            },
+            {
+                label: "Email",
+                defaultValue: this.state.email,
+                icon: <LocalPostOfficeIcon/>,
+                onChange: this.handleChangeEmail
+            },
+            {
+                label: "Mobile Phone",
+                defaultValue: this.state.mobilePhone,
+                icon: <SmartphoneIcon/>,
+                onChange: this.handleChangeMobilePhone
+            },
+            {
+                label: "Address",
+                defaultValue: this.state.address,
+                icon: <PlaceIcon/>,
+                onChange: this.handleChangeAddress
+            },
+            {
+                label: "Home Phone",
+                defaultValue: this.state.homePhone,
+                icon: <LocalPhoneIcon/>,
+                onChange: this.handleChangeHomePhone
+            },
+            {
+                label: "Occupation",
+                defaultValue: this.state.occupation,
+                icon: <GroupIcon/>,
+                onChange: this.handleChangeOccupation
+            },
+            {
+                label: "Organization",
+                defaultValue: this.state.organization,
+                icon: <WorkIcon/>,
+                onChange: this.handleChangeOrganization
+            }
+        ];
+
+        const defaultItemsProfile = itemsProfile.map((x) => {
+            return (
+                <div className="grid">
+                    <TextField
+                        label={x.label}
+                        defaultValue={x.defaultValue}
+                        type={x.type}
+                        InputProps={{
+                            readOnly: this.state.readOnly,
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    {x.icon}
+                                </InputAdornment>
+                            ),
+                        }}
+                        onChange={x.onChange}
+                        multiline
+                    />
+                </div>
+            );
+        });
+
+        const component = (
+            <form className={classes.form}>
+                <img src={profile} className={classes.profile} alt=""/>
+                {defaultItemsProfile}
+            </form>
+        );
+
+        return (
+            <>
+                <DrawerComponent
+                    title="Profile"
+                    cards={imgProfile}
+                    drawerItems={optionsDrawer}
+                    fabButton={fabButton}
+                    elements={component}
+                />
+            </>
         );
     }
 }

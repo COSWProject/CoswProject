@@ -14,12 +14,11 @@
 }
 
 .form {
-    display: block;
-    width: 100%;
+    display: flex;
+    flexWrap: wrap;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 30px 1fr;
     text-align: left;
 }

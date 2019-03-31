@@ -156,6 +156,7 @@ class DrawerComponent extends Component {
                     </IconButton>
                 </div>
                 <Divider/>
+                {this.props.cards}
                 <List>
                     {this.props.drawerItems}
                     {defaultItems}
