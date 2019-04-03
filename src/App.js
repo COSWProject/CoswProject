@@ -9,6 +9,7 @@ import UserProfile from "./userProfile/UserProfile";
 import NewMeeting from "./Company/NewMeeting";
 import CompanyProfile from "./Company/Profile";
 import CompanyMeetings from "./Company/Meetings";
+import history from "./History/History";
 
 class App extends Component {
 
@@ -31,6 +32,7 @@ class App extends Component {
                         <Route path="/schedule" component={schedule}/>
                         <Route path="/company/profile" component={CompanyProfile}/>
                         <Route path="/company/meetings" component={CompanyMeetings}/>
+                        <Route path="/user/history" component={history}/>
                     </div>
                 </Router>
             </div>
