@@ -39,9 +39,13 @@ class UserProfile extends React.Component{
     constructor(props) {
         super(props);
 
-        //const user = axios.get("http://localhost:8080/api/user/userbyemail/daniela.gonzalez-ra@mail.escuelaing.edu.co");
+        this.instance = axios.create({
+            baseURL: 'http://localhost:8080/api/',
+            timeout: 1000,
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+        });
 
-        //alert(axios.get("http://localhost:8080/api/user/id/1118124952"));
+        const user = this.instance.get("http://localhost:8080/api/user/userbyemail/"+localStorage.getItem("userLogged"));
 
         this.state = {
             readOnly: true,
@@ -262,6 +266,26 @@ class UserProfile extends React.Component{
                 icon: <LocalPhoneIcon/>,
                 onChange: this.handleChangeHomePhone
             },
+            {
+                label: "City",
+                defaultValue: this.state.city,
+                onChange: this.handleChangeCity
+            },
+            {
+                label: "Region",
+                defaultValue: this.state.region,
+                onChange: this.handleChangeRegion
+            },
+            {
+                label: "Country",
+                defaultValue: this.state.country,
+                onChange: this.handleChangeCountry
+            },
+            {
+                label: "PostalCode",
+                defaultValue: this.state.postalCode,
+                onChange: this.handleChangePostalCode
+            }
             {
                 label: "Occupation",
                 defaultValue: this.state.occupation,
