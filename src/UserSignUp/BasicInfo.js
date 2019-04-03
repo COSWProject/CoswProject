@@ -10,7 +10,17 @@ function AddressForm() {
                 Basic Information
             </Typography>
             <Grid container spacing={24}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
+                    <TextField
+                        required
+                        id="name"
+                        name="name"
+                        label="Name"
+                        type="text"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12}>
                     <Grid item>
                         <business />
                     </Grid>
@@ -25,9 +35,20 @@ function AddressForm() {
                 <Grid item xs={12} sm={6}>
                     <TextField
                         required
+                        id="cardId"
+                        name="cardId"
+                        label="ID"
+                        type="number"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <TextField
+                        required
                         id="password"
                         name="password"
                         label="Password"
+                        type="password"
                         fullWidth
                     />
                 </Grid>
@@ -37,6 +58,7 @@ function AddressForm() {
                         id="mobile"
                         name="mobile"
                         label="Mobile Phone"
+                        type="number"
                         fullWidth
                     />
                 </Grid>
@@ -45,6 +67,7 @@ function AddressForm() {
                         id="homephone"
                         name="homephone"
                         label="Home Phone"
+                        type="number"
                         fullWidth
                     />
                 </Grid>
@@ -82,6 +105,7 @@ function AddressForm() {
                         id="zip"
                         name="zip"
                         label="Zip / Postal code"
+                        type="number"
                         fullWidth
                     />
                 </Grid>

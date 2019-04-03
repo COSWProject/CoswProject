@@ -48,12 +48,26 @@ class Login extends Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleLoginCompany = this.handleLoginCompany.bind(this);
+        this.handleLoginUser = this.handleLoginUser.bind(this);
     }
 
     handleLoginUser(e) {
-        //Todo
 
         e.preventDefault();
+
+        axios.post('http://localhost:8080/token/loginUser', {
+            email: this.state.email,
+            password: this.state.password
+        })
+            .then((response) =>{
+                localStorage.setItem("token", response.data.accessToken);
+                localStorage.setItem("userLogged", this.state.email)
+                window.location.href = "/schedule"
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("User or password incorrect");
+            })
 
     }
 

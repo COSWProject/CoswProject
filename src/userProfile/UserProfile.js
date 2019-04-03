@@ -18,6 +18,7 @@ import LockIcon from '@material-ui/icons/Lock';
 import PropTypes from 'prop-types';
 import DrawerComponent from "../Component/DrawerComponent";
 import TextField from "@material-ui/core/es/TextField/TextField";
+import axios from 'axios';
 
 const styles = theme => ({
     fab: {
@@ -37,9 +38,14 @@ class UserProfile extends React.Component{
 
     constructor(props) {
         super(props);
+
+        //const user = axios.get("http://localhost:8080/api/user/userbyemail/daniela.gonzalez-ra@mail.escuelaing.edu.co");
+
+        //alert(axios.get("http://localhost:8080/api/user/id/1118124952"));
+
         this.state = {
             readOnly: true,
-            name: "Daniel Alejandro Castañeda Orozco",
+            name: "Daniel Alejandro Orozco",
             password: "",
             id: 1013672927,
             email: "daniel.orozco@mail.escuelaing.edu.co",
@@ -47,7 +53,11 @@ class UserProfile extends React.Component{
             address: "Cra 85C #7a-56",
             homePhone: 5697865,
             occupation: "Student",
-            organization: "Escuela Colombiana de Ingeniería Julio Garavito"
+            organization: "Escuela Colombiana de Ingeniería Julio Garavito",
+            city: "",
+            region: "",
+            country: "",
+            postalCode: 0,
 
         };
         this.handleEditProfile = this.handleEditProfile.bind(this);
@@ -61,6 +71,10 @@ class UserProfile extends React.Component{
         this.handleChangeHomePhone = this.handleChangeHomePhone.bind(this);
         this.handleChangeOccupation = this.handleChangeOccupation.bind(this);
         this.handleChangeOrganization = this.handleChangeOrganization.bind(this);
+        this.handleChangeCity = this.handleChangeCity.bind(this);
+        this.handleChangeRegion = this.handleChangeRegion.bind(this);
+        this.handleChangeCountry = this.handleChangeCountry.bind(this);
+        this.handleChangePostalCode = this.handleChangePostalCode.bind(this);
     }
 
     static handleSchedule() {
@@ -130,6 +144,30 @@ class UserProfile extends React.Component{
     handleChangeOrganization(e){
         this.setState({
             organization: e.target.value
+        })
+    }
+
+    handleChangeCity(e){
+        this.setState({
+            city: e.target.value
+        })
+    }
+
+    handleChangeRegion(e){
+        this.setState({
+            region: e.target.value
+        })
+    }
+
+    handleChangeCountry(e){
+        this.setState({
+            country: e.target.value
+        })
+    }
+
+    handleChangePostalCode(e){
+        this.setState({
+            postalCode: e.target.value
         })
     }
 
