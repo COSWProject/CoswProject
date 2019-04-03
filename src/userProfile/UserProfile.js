@@ -285,7 +285,7 @@ class UserProfile extends React.Component{
                 label: "PostalCode",
                 defaultValue: this.state.postalCode,
                 onChange: this.handleChangePostalCode
-            }
+            },
             {
                 label: "Occupation",
                 defaultValue: this.state.occupation,
