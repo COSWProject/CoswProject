@@ -19,6 +19,26 @@ const styles = theme => ({
     },
 });
 
+
+
+
+const lists = inputs.map((x, i) => {
+            return (
+                <div key={i}>
+                    <CssBaseline/>
+                    <TextField
+                        required
+                        className={classes.text}
+                        label={x.label}
+                        margin="normal"
+                        onChange={x.onchange}
+                        type={x.type}
+                    />
+                    <br/>
+                </div>
+            );
+        });
+
 function list(props) {
     const { classes } = props;
     return (
@@ -222,9 +242,39 @@ function list(props) {
         </div>
     );
 }
-
-list.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
 export default withStyles(styles)(list);
+class NewMeeting extends Component {
+
+    constructor(props) {
+        super(props)
+
+
+    }
+
+    handleSubmit(e) {
+
+            e.preventDefault();
+
+            axios.get('http://localhost:8080/api/access/all', {
+             headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+             })
+                .then(function (response) {
+                    alert(response);
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  })
+        }
+
+
+    render() {
+
+
+
+        return (
+
+        );
+    }
+}
+
+export default withStyles(styles)(NewMeeting);

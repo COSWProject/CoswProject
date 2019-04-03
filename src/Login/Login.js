@@ -1,29 +1,20 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import './Login.css';
-import VpnKey from '@material-ui/icons/VpnKey';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import {Button, Card, Checkbox, FormControlLabel, Typography} from "@material-ui/core";
-import Link from "@material-ui/core/Link";
+import {Button, Card, Checkbox, FormControl, FormControlLabel, Radio, Typography} from "@material-ui/core";
 import withStyles from "@material-ui/core/styles/withStyles";
-import SimpleModal from "../Component/SimpleModal";
-import AppBarComponent from "../Component/AppBar";
-import CompanySignIn from "../Company/Login";
-import CompanySignUp from "../Company/SignUp";
-import UserSignUp from "../UserSignUp/SignUp";
+import AppBarComponent from "../Component/AppBarComponent";
+import PaperComponent from "../Component/PaperComponent";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import FormLabel from "@material-ui/core/FormLabel";
+import axios from 'axios';
 
 const styles = theme => ({
     text: {
-        marginLeft: theme.spacing.unit,
-        marginRight: theme.spacing.unit,
-        width: "100%"
-    }, avatar: {
-        backgroundColor: "black",
-        margin: theme.spacing.unit,
-        textAlign: "center"
+        width: "90%"
     }, button: {
-        width: "70%",
-        position: "left"
+        width: "80%",
+        marginBottom: 20
     }, divButtons: {
         width: "50%",
         marginLeft: "auto",
@@ -37,6 +28,8 @@ const styles = theme => ({
         marginTop: "1%",
         paddingBottom: "3%",
         paddingTop: "3%"
+    }, title: {
+        paddingBottom: 20
     }
 });
 
@@ -44,33 +37,59 @@ class Login extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {email: "", password: ""};
-        this.handleLogin = this.handleLogin.bind(this);
+        this.state = {
+            email: "",
+            password: "",
+            value: "user"
+        };
+
+        this.handleChangeUser = this.handleChangeUser.bind(this);
+        this.handleChangeCompany = this.handleChangeCompany.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleLoginCompany = this.handleLoginCompany.bind(this);
     }
 
-    handleLogin() {
-        if (this.state.email === localStorage.getItem('email') && this.state.password === localStorage.getItem('password')) {
-            console.log('Logged');
-        }
-        this.setState({
-            email: "",
-            password: ""
-        });
+    handleLoginUser(e) {
+        //Todo
+
+        e.preventDefault();
+
+    }
+
+    handleLoginCompany(e) {
+
+        e.preventDefault();
+
+        axios.post('http://localhost:8080/token/login', {
+            email: this.state.email,
+            password: this.state.password
+        })
+            .then((response) => {
+                localStorage.setItem("token", response.data.accessToken);
+                localStorage.setItem("companyLogged", this.state.email)
+                window.location.href = "/company/meetings"
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("User or password incorrect");
+            })
     }
 
     handleEmailChange(e) {
-        alert("email");
-        this.setState({
-            email: e.target.value
-        })
+        this.setState({email: e.target.value})
     }
 
     handlePasswordChange(e) {
-        this.setState({
-            password: e.target.value
-        })
+        this.setState({password: e.target.value})
+    }
+
+    handleChangeUser(e) {
+        this.setState({value: e.target.value});
+    }
+
+    handleChangeCompany(e) {
+        this.setState({value: e.target.value});
     }
 
     render() {
@@ -79,19 +98,17 @@ class Login extends Component {
 
         const inputs = [
             {
-                label: "Username",
+                label: "Email",
                 onChange: this.handleEmailChange,
-                icon: <AccountCircle className={classes.icon}/>
             },
             {
                 label: "Password",
                 type: "password",
                 onChange: this.handlePasswordChange,
-                icon: <VpnKey className={classes.icon}/>
             }
         ];
 
-        const inputTexts = inputs.map((x) => {
+        const inputTexts = inputs.map((x, i) => {
             return (
                 <>
                     <TextField
@@ -99,73 +116,89 @@ class Login extends Component {
                         className={classes.text}
                         label={x.label}
                         margin="normal"
-                        onChange={x.onchange}
+                        onChange={x.onChange}
                         type={x.type}
-                        InputProps={{
-                            startAdornment: (
-                                x.icon
-                            )
-                        }}
                     />
-                    <br/>
                 </>
             );
         });
 
+        const formButton = (
+            <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                type="submit"
+            >
+                {this.state.value === "user" ? "Sign in user" : "Sign in company"}
+            </Button>
+        );
+
         const form = (
-            <form className={classes.form}>
-                <Typography component="h1" variant="h4" color="primary">
-                    EasyAccess
-                </Typography>
-                <br/>
+            <form className={classes.form}
+                  onSubmit={this.state.value === "user" ? this.handleLoginUser : this.handleLoginCompany}
+            >
                 {inputTexts}
-                <br/>
                 <FormControlLabel
                     control={<Checkbox color="primary"/>}
-                    label="Keep me logged in"/>
-                <br/>
-                <Button
-                    type="submit"
-                    variant="outlined"
-                    color="primary"
-                    className={classes.button}
-                    action={this.handleLogin}
-                    href="/schedule"
-                >
-                    Sign in
-                </Button>
-                <br/>
-                <Link
-                    href="/signup"
-                    variant="body2"
-                >
-                    Don't have an account? Create Account
-                </Link>
+                    label="Keep me logged in"
+                />
+                {formButton}
             </form>
+        );
+
+        const accountUser = (
+            <Typography className={classes.title}>
+                Don't have an account? Create one <a href="/user/signup">here</a>
+            </Typography>
+        );
+
+        const accountCompany = (
+            <Typography className={classes.title}>
+                Don't have an account? Create one <a href="/company/signup">here</a>
+            </Typography>
+        );
+
+        const createAccount = (
+            <>
+                {this.state.value === "user" ? accountUser : accountCompany}
+            </>
+        );
+
+        const radioButtons = (
+            <div>
+                <FormControl component="fieldset" className={classes.formControl}>
+                    <FormLabel component="legend"></FormLabel>
+                    <RadioGroup
+                        value={this.state.value}
+                        row
+                    >
+                        <FormControlLabel
+                            value="user"
+                            control={<Radio color="primary"/>}
+                            label="User"
+                            onClick={this.handleChangeUser}
+                        />
+                        <FormControlLabel
+                            value="company"
+                            control={<Radio color="primary"/>}
+                            label="Company"
+                            onClick={this.handleChangeCompany}
+                        />
+                    </RadioGroup>
+                </FormControl>
+            </div>
         );
 
         return (
             <>
-                <AppBarComponent/>
-                <Card className={classes.card}>
-                    <Typography component="h2" variant="display3" gutterBottom>
-                        Welcome to Easy Access
-                        <Typography variant="h6" gutterBottom>
-                            Here you can manage your company access or view your own invitations
-                        </Typography>
-                    </Typography>
-                    <div className={classes.divButtons}>
-                        <SimpleModal
-                            elements={form}
-                            buttonName="User Sign in"
-                            buttonSize="large"
-                        />
-                        <UserSignUp/>
-                        <CompanySignIn/>
-                        <CompanySignUp/>
-
-                    </div>
-                </Card>
+                <AppBarComponent title="Easy Access"/>
+                <PaperComponent
+                    radioButtons={radioButtons}
+                    form={form}
+                    createAccount={createAccount}
+                    title="Easy access"
+                />
             </>
         );
     }
