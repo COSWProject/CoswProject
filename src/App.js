@@ -11,6 +11,7 @@ import CompanyProfile from "./Company/Profile";
 import UserSignUp from "./UserSignUp/SignUp";
 import CompanySignUp from "./Company/SignUp";
 import CompanyMeetings from "./Company/Meetings";
+import history from "./History/History";
 
 class App extends Component {
 
@@ -33,6 +34,7 @@ class App extends Component {
                         <Route path="/user/signup" component={UserSignUp}/>
                         <Route path="/company/signup" component={CompanySignUp}/>
                         <Route path="/company/meetings" component={CompanyMeetings}/>
+                        <Route path="/user/history" component={history}/>
                     </div>
                 </Router>
             </div>

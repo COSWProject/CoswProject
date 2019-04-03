@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField";
@@ -41,12 +42,7 @@ class NewMeeting extends Component {
         this.handleChangeHostName = this.handleChangeHostName.bind(this);
         this.handleChangeHour = this.handleChangeHour.bind(this);
         this.handleChangePersonCharge = this.handleChangePersonCharge.bind(this);
-
-        this.instance = axios.create({
-            baseURL: 'http://localhost:8080/api/',
-            timeout: 1000,
-            headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
-        });
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
@@ -76,6 +72,24 @@ class NewMeeting extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        this.instance = axios.post('http://localhost:8080/api/access/', {
+                                        owner: this.state.hostName,
+                                        qr: "ds",
+                                        invitedBy: this.state.personCharge,
+                                        institution: "ECI",
+                                        time: this.state.hour,
+                                        date: this.state.date,
+                                        expirationTime: "12:00"
+                                    },{
+                                    headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}
+                                    }
+                                ).then(() => {
+                                                  alert("Company created");
+                                                  window.location.href = "/"
+                                              })
+                                              .catch((error) => {
+                                                  console.log(error)
+                                              })
     }
 
     render() {
